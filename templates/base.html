@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <title>実験生物管理-Sampler</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>実験生物管理-Sampler</h1>
+  </header>
+{% block header %}
+{% endblock header %}
+
+    <div class="Function_ListFrame">
+    <!-- 可能ならリンクに触れると、その下に資料の作成か確認かを選べるリンクが表示される仕組みを作りたい -->
+      <div class="Function_List">
+        <a href="{% url 'Sampling_Page' %}">サンプリングレポートの作成</a>
+        <a href="{% url 'Sampling_List' %}">サンプリングリストの確認</a>
+      </div>
+      <!--
+      <div class="Function_List">
+        <a href="{% url 'Preserve_List' %}">保存されたサンプルの場所</a>
+      </div>
+      -->
+
+      <div class="Function_List">
+        <a href="{% url 'Report_Page' %}">飼育日誌の作成</a>
+        <a href="{% url 'Report_List' %}">飼育日誌の閲覧</a>
+      </div>
+      <div class="Function_List">
+        <a href="{% url 'Animal_Page' %}">飼育方法/動物情報の作成</a>
+        <a href="{% url 'Animal_List' %}">飼育方法の閲覧</a>
+      </div>
+    </div>
+{% block content %}
+<
+{% endblock content %}
+
+  </body>
+</html>

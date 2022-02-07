@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock header %}
+  </head>
+  <body>
+{% block content %}
+<!-- 中身 -->
+<div class="container">
+  <div class="Function_List">
+    <a href="{% url 'Top_Page' %}">Topに戻る</a>
+  </div>
+
+<!-- サンプリングデータを閲覧する -->
+  <div class="Sampling_CheckFrame">
+    <div class="SCF_header">
+      <!-- 日付 -->
+      <div class="">
+        <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
+
+      </div>
+      <h1>{{ object.title }}</h1>
+      <!--  対象生物　-->
+      <h3>{{ object.animal }}</h3>
+    </div>
+    <!-- 詳細 -->
+    <div class="SCF_container">
+      <div class="SCF_Summary">
+        <!-- サンプリング目的 -->
+        <div class="">
+          <p>{{ object.purpose }}</p>
+        </div>
+        <!-- サンプリング手法 -->
+        <div class="">
+          <p>{{ object.method}}</p>
+        </div>
+      </div>
+      <div class="SCF_Group">
+        <!-- コントロールグループ -->
+        <div class="SCFG_Control">
+          <!-- N数 -->
+          <div class="">
+            <p>Control :{{ object.control_number }}</p>
+          </div>
+          <!-- コントロール条件 -->
+          <div class="SCFG_Situation">
+            <p>実験条件:{{ object.control_situation }}</p>
+          </div>
+        </div>
+        <!-- 実験グループ(複数グループも考慮すべき？？) -->
+        <div class="">
+          <div class="SCFG_Experiment">
+            <!-- N数 -->
+            <div class="">
+              <p>Experiment :{{ object.experiment_number }}</p>
+            </div>
+            <!-- 実験群の条件 -->
+            <div class="SCFG_Situation">
+              <p>実験条件：{{ object.experiment_situation }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 保存方法(今は作成しない) -->
+      <!-- 補足(今は作成しない) -->
+      <!--担当者(今は作成しない) -->
+    </div>
+
+  </div>
+<!-- ユーザーステータス -->
+  <div class="User_Frame">
+    <!-- loginしているUser名の表示 -->
+    <!-- アカウント情報に関する編集(今は作成しない) -->
+    <div class="">
+
+    </div>
+
+  </div>
+
+
+</div>
+{% endblock content %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

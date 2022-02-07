@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock header %}
+  </head>
+  <body>
+{% block content %}
+<!-- 中身 -->
+<div class="container">
+  <div class="Function_List">
+    <a href="{% url 'Top_Page' %}">Topに戻る</a>
+  </div>
+<!-- サンプリングデータを閲覧する -->
+  <div class="Animal_CheckFrame">
+    <div class="ACF_header">
+      <!-- 更新日 -->
+      <div class="">
+        <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
+      </div>
+      <!-- 生物名 -->
+      <h1>{{ object.Animal }}</h1>
+      <!-- 画像データ -->
+      <img src="" alt="">
+    </div>
+    <!-- 詳細 -->
+    <div class="ACF_container">
+      <div class="ACF_Summary">
+        <!-- 利用目的 -->
+        <div class="">
+          <p>{{ object.purpose }}</p>
+        </div>
+        <!-- 担当者 -->
+        <div class="">
+          <p>{{ object.manager}}</p>
+        </div>
+      </div>
+      <!-- 飼育方法 -->
+      <div class="ACF_Howto">
+        <!--清掃-->
+        <div class="ACFH_washing">
+          <!-- 清掃方法 -->
+          <div class="">
+            <p>Control :{{ object.wash }}</p>
+          </div>
+          <!-- 清掃頻度 -->
+          <div class="ACFH_Frequency">
+            <p>{{ object.wash_frequency }}</p>
+          </div>
+        </div>
+        <!-- 餌 -->
+        <div class="">
+          <!-- 与える餌・方法 -->
+          <div class="">
+            <p>{{ object.feed }}</p>
+          </div>
+          <!-- 餌を与える頻度 -->
+          <div class="">
+            <p>{{ object.feed_frequency }}</p>
+          </div>
+        </div>
+        <!-- 生育環境 -->
+        <div class="">
+          <!-- 適温 -->
+          <div class="">
+            <p>{{ object.temprature }}</p>
+          </div>
+          <!-- 場所 -->
+          <div class="">
+            <p>{{ object.location }}</p>
+          </div>
+        </div>
+    </div>
+
+  </div>
+<!-- ユーザーステータス -->
+  <div class="User_Frame">
+    <!-- loginしているUser名の表示 -->
+    <!-- アカウント情報に関する編集(今は作成しない) -->
+    <div class="">
+
+    </div>
+
+  </div>
+
+
+</div>
+{% endblock content %}
+  </body>
+</html>

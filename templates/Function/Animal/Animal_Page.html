@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock header %}
+  </head>
+  <body>
+{% block content %}
+<!-- 中身 -->
+<div class="container">
+  <div class="Function_List">
+    <a href="{% url 'Top_Page' %}">Topに戻る</a>
+  </div>
+  <!-- サンプリング方法を記録する箱 -->
+  <div class="Sampling_PageFrame">
+    <!-- 以下の情報を取得する
+    Animal
+    purpose
+    manager
+    wash
+    wash_frequency
+    feed
+    feed_howto
+    feed_frequency
+    temprature
+    location -->
+<!-- 日付とタイトル -->
+  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <p>追加する生物名:<input type="text" name="Animal" value=""></p>
+  <p>利用目的:<input type="text" name="purpose" value=""></p>
+  <p>管理者:<input type="text" name="manager" value=""></p>
+  <p>清掃方法:<input type="text" name="wash" value=""></p>
+  <p>清掃頻度:<input type="text" name="wash_frequency" value=""></p>
+  <p>餌:<input type="text" name="feed" value=""></p>
+  <p>餌の頻度:<input type="text" name="feed_frequency" value=""></p>
+  <p>適温:<input type="text" name="temprature" value=""></p>
+  <p>場所:<input type="text" name="location" value=""></p>
+  <input type="hidden" name="author" value="{{ user.id }}">
+  <input type="submit" name="" value="作成する">
+  </form>
+<!-- ユーザーステータス -->
+  <div class="User_Frame">
+    <!-- loginしているUser名の表示 -->
+    <!-- アカウント情報に関する編集(今は作成しない) -->
+    <div class="">
+
+    </div>
+
+  </div>
+
+
+</div>
+{% endblock content %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
