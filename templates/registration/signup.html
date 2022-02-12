@@ -1,0 +1,36 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" text="text/css" href="{% static 'style.css' %}">
+
+    <title>実験生物管理-Sampler</title>
+  </head>
+  <body class="" data-admin-utc-offset="0">
+    <div id="container">
+      <div id="header">
+        <h1>実験生物管理-Sampler</h1>
+      </div>
+{% block content %}
+  <h2>Default SignUp</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>{{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <div>
+    <button type="submit">ユーザー登録</button>
+    </div>
+    <a href="{% url 'accounts:login' %}">戻る</a>
+  </form>
+{% endblock %}

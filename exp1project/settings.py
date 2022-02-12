@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 TIME_ZONE = 'Asia/Tokyo'
 LOGIN_REDIRECT_URL = 'exp1app:Top_Page'
-
+LOGIN_URL='accounts:login'
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'exp1app.apps.Exp1AppConfig',
     'accounts.apps.AccountsConfig',
+    #下記はformのsixライブラリ用だが、消したほうが良いかも
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #下記二つはformのsixライブラリ用だが、消したほうが良いかも
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'exp1project.urls'
@@ -129,4 +134,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #メール関連
-EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# cf. https://docs.djangoproject.com/ja/1.10/ref/settings/
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'exp1appweb0212grid@gmail.com'
+EMAIL_HOST_PASSWORD = 'nclotqjdberujdnv'

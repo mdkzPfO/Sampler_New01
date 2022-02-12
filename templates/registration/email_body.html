@@ -1,0 +1,8 @@
+{% autoescape off %}
+こんにちは {{ user.username }}　さん！
+
+ユーザー登録ありがとうございます。
+{{ user.username }}　さんのアカウントを有効化するために以下のリンクをクリックして下さい。
+
+http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+{% endautoescape %}
