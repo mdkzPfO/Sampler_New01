@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block header %}
+<link rel="stylesheet"  type="text/text/css" href="{% static 'style.css' %}">
 {% endblock header %}
-  </head>
   <body>
 {% block content %}
 <!-- 中身 -->
 <div class="container">
   <div class="Function_List">
-    <a href="{% url 'Top_Page' %}">Topに戻る</a>
+    <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
   </div>
 
 <!-- サンプリングデータを閲覧する -->

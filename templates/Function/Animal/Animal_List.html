@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block header %}
+<link rel="stylesheet"  type="text/text/css" href="{% static 'style.css' %}">
 {% endblock header %}
-  </head>
   <body>
 {% block content %}
 <!-- 中身 -->
 <div class="container">
 <!-- Functionの各ツールに飛ぶリンクまとめ -->
 <div class="Function_List">
-  <a href="{% url 'Top_Page' %}">Topに戻る</a>
+  <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
 </div>
 <!-- サンプリングデータリストを閲覧する -->
   <div class="Animal_ListFrame">
@@ -17,7 +17,7 @@
     <div class="Animal_ListBox">
       <p>{{ item.created_at|date:"y/n/j H:i:s T" }}</p>
       <p>{{ item.Animal }}</p>
-      <a href="{% url 'Animal_Check' item.pk %}">詳細</a>
+      <a href="{% url 'exp1app:Animal_Check' item.pk %}">詳細</a>
     </div>
     {% endfor %}
   </div>

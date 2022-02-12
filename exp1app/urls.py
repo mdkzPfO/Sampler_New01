@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from .views import TopPageView,ReportPageClass,ReportCheckView,ReportListView,SamplingPageClass,SamplingListView,SamplingCheckView,PreserveListView,PreserveCheckView,AnimalPageClass,AnimalListView,AnimalCheckView,signupview,loginview
-
+app_name='exp1app'
 urlpatterns=[
 path('signup/',signupview,name='signup'),
 path('login/',loginview,name='login'),

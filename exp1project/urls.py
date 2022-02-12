@@ -19,6 +19,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/',include('django.contrib.auth.urls')),
-    path('',include('exp1app.urls')+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT))
-    ]
+    path('accounts/',include('accounts.urls')),
+    path('',include('exp1app.urls'))
+    ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

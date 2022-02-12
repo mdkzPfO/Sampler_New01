@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 TIME_ZONE = 'Asia/Tokyo'
-LOGIN_REDIRECT_URL = 'Top_Page'
+LOGIN_REDIRECT_URL = 'exp1app:Top_Page'
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'exp1app.apps.Exp1AppConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,7 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#メール関連
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'

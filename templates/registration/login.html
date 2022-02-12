@@ -1,28 +1,31 @@
+<!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>実験生物管理-Sampler</title>
-  </head>
-  <body>
-    <header>
-      <h1>実験生物管理-Sampler</h1>
-    </header>
-    <div class="">
+    <link rel="stylesheet" text="text/css" href="{% static 'style.css' %}">
 
-    <form class="" method='post'>{% csrf_token %}
-          <h1>ログインしてください</h1>
-          <label>ユーザー名</label>
-          <input type="text" id="inputEmail" class="" placeholder="username" name="username_data" required="" autofocus="">
-          <label for="inputPassword" class="">パスワード</label>
-          <input type="password" id="inputPassword" class="" placeholder="Password" name="password_data" required="">
-          <div class="">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="" type="submit">Sign in</button>
-          <p class="">© 2017-2020</p>
-    </form
-    </div>
+    <title>実験生物管理-Sampler</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>実験生物管理-Sampler</h1>
+  </header>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      <p>
+        <label for="id_username">ユーザー名:</label>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+      </p>
+      <p>
+        <label for="id_password">パスワード:</label>
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+      </p>
+      <button type="submit">ログイン</button>
+    </form>
+    <a href="{% url 'accounts:password_reset' %}">パスワードを忘れた</a>
   </body>
