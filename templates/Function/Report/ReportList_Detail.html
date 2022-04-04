@@ -1,46 +1,81 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<header>
+  <div class="header_title">
+    <h1>実験生物管理-Sampler</h1>
+  </div>
+  <div class="header_login">
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+    </div>
+    <div class="login_user">
+      {% if user.is_anonymous %}
+      <a>ユーザー:ゲスト</a>
+      {% else %}
+      <a>ユーザー；{{ user }}</a>
+      {% endif %}
+    </div>
+    <div class="logout">
+      <a href="#">ログアウト</a>
+    </div>
+
+  </div>
+</header>
 {% endblock header %}
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container">
-  <div class="Function_List">
-    <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
-  </div>
-<!-- 飼育レポートデータを閲覧する -->
-  <div class="Report_CheckFrame">
-    <div class="RCF_header">
+<div class="container_check">
+
+<!-- サンプリングデータを閲覧する -->
+  <div class="Sampling_CheckFrame">
+    <div class="SCF_header">
       <!-- 日付 -->
       <div class="">
         <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
 
       </div>
-      <!-- 飼育ステータス -->
-      <h1>{{ object.status }}</h1>
+      <h1>{{ object.title }}</h1>
+      <!--  対象生物　-->
+      <h3>{{ object.animal }}</h3>
+      <h3>{{ object.user }}</h3>
     </div>
     <!-- 詳細 -->
-    <div class="RCF_container">
-      <div class="RCF_Summary">
-        <!-- 飼育の所感 -->
+    <div class="SCF_container">
+      <div class="SCF_Summary">
+        <!-- サンプリング目的 -->
         <div class="">
-          <p>{{ object.suggestion }}</p>
+          <p>{{ object.purpose }}</p>
+        </div>
+        <!-- サンプリング手法 -->
+        <div class="">
+          <p>{{ object.method}}</p>
         </div>
       </div>
-    </div>
-      <!-- 飼育詳細 --
-      <div class="RCF_Group">
-        <!--各生物ごとの清掃・餌状況 --
-        <div class="RCFG_Control">
-          <!-- 生物名 --
+      <div class="SCF_Group">
+        <!-- コントロールグループ -->
+        <div class="SCFG_Control">
+          <!-- N数 -->
           <div class="">
-            <p></p>
+            <p>Control :{{ object.control_number }}</p>
           </div>
-          <!-- コントロール条件 --
+          <!-- コントロール条件 -->
           <div class="SCFG_Situation">
             <p>実験条件:{{ object.control_situation }}</p>
+          </div>
+        </div>
+        <!-- 実験グループ(複数グループも考慮すべき？？) -->
+        <div class="">
+          <div class="SCFG_Experiment">
+            <!-- N数 -->
+            <div class="">
+              <p>Experiment :{{ object.experiment_number }}</p>
+            </div>
+            <!-- 実験群の条件 -->
+            <div class="SCFG_Situation">
+              <p>実験条件：{{ object.experiment_situation }}</p>
+            </div>
           </div>
         </div>
       </div>

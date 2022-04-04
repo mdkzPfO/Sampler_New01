@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+  <div class="header_title">
+    <h1>実験生物管理-Sampler</h1>
+  </div>
+  <div class="header_login">
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+    </div>
+
+    <div class="login_user">
+      {% if user.is_anonymous %}
+      <a>ユーザー:ゲスト</a>
+      {% else %}
+      <a>ユーザー；{{ user }}</a>
+      {% endif %}
+    </div>
+    <div class="logout">
+      <a href="#">ログアウト</a>
+    </div>
+
+  </div>
+</header>
+{% endblock header %}
+  <body>
+{% block content %}
+<!-- 中身 -->
+<div class="container_check">
+<!-- Functionの各ツールに飛ぶリンクまとめ -->
+  <!-- サンプリング方法を記録する箱 -->
+  <div class="Sampling_PageFrame">
+    <!-- 以下の情報を取得する
+date
+title
+animal
+purpose
+method
+contorl number
+situation
+experiment number
+experiment situation -->
+<!-- 日付とタイトル -->
+<!--
+ <a href="{% url 'exp1app:Children_Creation' %}">+新規作成</a>
+-->
+
+  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <div class="experiment_situation">
+    <div class="sampling_creation object">
+      <p>飼育生物&nbsp&nbsp&nbsp:<input type="text" name="animal" required=True value=""></p>
+      <p>飼育目的&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="animal_purpose" required=True value=""></p>
+
+      <p>責任者:</p><textarea type="text" name="manager" required=True value="" class="Long_Input_Box"></textarea>
+      <p>洗浄方法:</p><textarea type="text" name="wash" required=True value="" class="Long_Input_Box"></textarea>
+      <p>洗浄頻度:</p><input type="text" name="wash_frequency" required=True value="">
+      <p>餌：&nbsp&nbsp&nbsp:</p><textarea type="text" name="feed" required=True value="" class="Long_Input_Box"></textarea>
+      <p>餌の頻度：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><input type="text" name="feed_frequency" required=True value="">
+      <p>最適温度：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><input type="text" name="temprature" required=True value="" class="Long_Input_Box"></input>
+      <p>配置：サンプル数&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><input type="text" name="locatino" required=True value="">
+    </div>
+  </div>
+  <input type="hidden" name="user" value="{{ user.id }}">
+  <input type="submit" name="" value="作成する">
+  </form>
+
+<!-- ユーザーステータス -->
+  <div class="User_Frame">
+    <!-- loginしているUser名の表示 -->
+    <!-- アカウント情報に関する編集(今は作成しない) -->
+    <div class="">
+
+    </div>
+
+  </div>
+
+
+</div>
+{% endblock content %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

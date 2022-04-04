@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<header>
+  <div class="header_title">
+    <h1>実験生物管理-Sampler</h1>
+  </div>
+  <div class="header_login">
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+    </div>
+    <div class="login_user">
+      {% if user.is_anonymous %}
+      <a>ユーザー:ゲスト</a>
+      {% else %}
+      <a>ユーザー；{{ user }}</a>
+      {% endif %}
+    </div>
+    <div class="logout">
+      <a href="#">ログアウト</a>
+    </div>
+
+  </div>
+</header>
 {% endblock header %}
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container">
-  <div class="Function_List">
-    <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
-  </div>
+<div class="container_check">
+<!-- Functionの各ツールに飛ぶリンクまとめ -->
   <!-- サンプリング方法を記録する箱 -->
   <div class="Sampling_PageFrame">
     <!-- 以下の情報を取得する
@@ -23,12 +40,22 @@ situation
 experiment number
 experiment situation -->
 <!-- 日付とタイトル -->
+<!--
+ <a href="{% url 'exp1app:Children_Creation' %}">+新規作成</a>
+-->
+
   <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-  <p>飼育ステータス:<input type="text" name="status" value=""></p>
-  <p>共有事項:<input type="text" name="suggestion" value=""></p>
-  <input type="hidden" name="author" value="{{ user.id }}">
+  <div class="experiment_situation">
+    <div class="sampling_creation object">
+      <p>ステータス：&nbsp&nbsp&nbsp:<input type="text" name="status" required=True value=""></p>
+      <p>報告事項：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="suggestion" required=True value=""></p>
+
+    </div>
+  </div>
+  <input type="hidden" name="user" value="{{ user.id }}">
   <input type="submit" name="" value="作成する">
   </form>
+
 <!-- ユーザーステータス -->
   <div class="User_Frame">
     <!-- loginしているUser名の表示 -->

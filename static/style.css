@@ -1,0 +1,224 @@
+body{
+  background-color: #EEEEEE;
+  margin:0;
+}
+header{
+  margin-right:70px;
+  margin-left:70px;
+  background-size:cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:pink;
+  font-size: 10pt;
+}
+
+.header_title{
+  background-size:cover;
+  float: left;
+  align-items: center;
+  width:600px;
+  height:50px;
+  margin-left: 10px;
+}
+.header_title h1{
+  margin-right:10px;
+}
+.login_user{
+  float:right;
+  color:black;
+
+}
+.login_box{
+  float:right;
+  background-color:#FFAD90;
+  margin:auto 0;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.header_login{
+  margin: 0 0 0 auto;
+  background-color: white;
+  border:solid 0.5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.container{
+  background-color:#FFFF99;
+  background-size:cover;
+  font-size: 10pt;
+  margin-left: 70px;
+  margin-right:70px;
+  margin-top:0;
+  margin-bottom: 0;
+  padding-top:0;
+  padding-bottom: 0;
+}
+
+.container_check{
+  background-color:white;
+  height:850px;
+  padding: 10px;
+  width:750px;
+  margin:0 auto;
+}
+.container_accounts{
+  background-color:white;
+  background-size:cover;
+  font-size: 10pt;
+  margin-left: 70px;
+  margin-right:70px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container_signup{
+  background-color:white;
+  background-size:cover;
+  font-size: 10pt;
+  margin-left: 70px;
+  margin-right:70px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container_rest_password{
+  background-color:white;
+  background-size:cover;
+  font-size: 10pt;
+  margin-left: 70px;
+  margin-right:70px;
+  height:200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container_summary{
+  float:left;
+  text-align: left;
+  margin-left: 10px;
+}
+.container_summary_title img{
+  width: 50%;
+}
+.container_summary_title{
+  float:left;
+  text-align: left;
+}
+.login_form{
+  color:white;
+}
+.login_option{
+  margin-top:15px;
+  float:right;
+  text-decoration: underline black;
+  color:white;
+}
+
+.login_option a{
+  text-decoration: none;
+  color:white;
+}
+.Function_ListFrame{
+    /*コレ追加*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #333;
+    background-color:#F0E0E0;
+    background-size:cover;
+}
+.Function_List{
+  height: 40px;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+.Function_List a{
+  text-decoration: none;
+  color:black;
+}
+
+/* サンプリング作成のCSS*/
+.experiment_situation{
+  border:solid 1px grey;
+  height:800px;
+  margin:0 auto;
+  display: flex;
+}
+.sampling_creation{
+  margin:20px;
+}
+.Long_Input_Box{
+  width:500px;
+  line-height: 40px;
+}
+/* サンプリングリストのCSS*/
+.Sampling_ListBox{
+  border:solid 4px #FF3333;
+  border-style:solid ridge;
+  margin:10px;
+  height:100px;
+  width: 350px;
+  padding:20px;
+  font-size: 16px;
+  background-color: white;
+}
+.Sampling_ListBox p{
+  margin:0;
+  padding:0;
+}
+.Sampling_ListBox a{
+  background-color: #000080;
+  color:white;
+  padding:0px 10px 0px 10px;
+  margin:2px;
+  height:15px;
+  text-decoration: underline white;
+}
+.Report_ListBox{
+  border:solid 4px #FF3333;
+  border-style:solid ridge;
+  margin:10px;
+  height:70px;
+  width: 350px;
+  padding:10px;
+  font-size: 16px;
+  background-color: #CCCCFF;
+}
+.Report_ListBox p{
+  margin:0;
+  padding:0;
+}
+.Report_ListBox a{
+  background-color: #000080;
+  color:white;
+  padding:0px 10px 0px 10px;
+  margin:2px;
+  height:15px;
+  text-decoration: underline white;
+}
+.Animal_ListBox{
+  border:solid 4px #FF3333;
+  border-style:solid ridge;
+  margin:10px;
+  height:50px;
+  width: 350px;
+  padding:10px;
+  font-size: 16px;
+  background-color: #CCCCFF;
+}
+.Animal_ListBox p{
+  margin:0;
+  padding:0;
+}
+.Animal_ListBox a{
+  background-color: #000080;
+  color:white;
+  padding:0px 10px 0px 10px;
+  margin:2px;
+  height:15px;
+  text-decoration: underline white;
+}

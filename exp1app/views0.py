@@ -73,7 +73,7 @@ class SamplingList_Create(CreateView):
         qryset.user=self.request.user
         qryset.save()
         return  redirect('exp1app:Sampling_List')
-#a
+
 
 
 #更新時に値が格納されていないものがあっても許容する

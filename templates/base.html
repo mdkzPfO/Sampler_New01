@@ -1,38 +1,47 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <!-- Required meta tags -->
+{% load static %}
     <meta charset="utf-8">
+    <link rel="stylesheet"  type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 
     <title>実験生物管理-Sampler</title>
 </head>
 
 <body>
 
-  <header>
-    <h1>実験生物管理-Sampler</h1>
-  </header>
+
 {% block header %}
 {% endblock header %}
-
+  <div class="container">
     <div class="Function_ListFrame">
     <!-- 可能ならリンクに触れると、その下に資料の作成か確認かを選べるリンクが表示される仕組みを作りたい -->
       <div class="Function_List">
-        <a href="{% url 'exp1app:Sampling_Page' %}">サンプリングレポートの作成</a>
+        <a href="{% url 'exp1app:SamplingList_Create' %}">サンプリング資料の作成</a>
+      </div>
+      <div class="Function_List">
         <a href="{% url 'exp1app:Sampling_List' %}">サンプリングリストの確認</a>
       </div>
-
       <div class="Function_List">
-        <a href="{% url 'exp1app:Report_Page' %}">飼育日誌の作成</a>
+        <a href="{% url 'exp1app:ReportList_Create' %}">飼育日誌の作成</a>
+      </div>
+      <div class="Function_List">
         <a href="{% url 'exp1app:Report_List' %}">飼育日誌の閲覧</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:Animal_Page' %}">飼育方法/動物情報の作成</a>
+        <a href="{% url 'exp1app:AnimalList_Create' %}">飼育方法/動物情報の作成</a>
+      </div>
+      <div class="Function_List">
         <a href="{% url 'exp1app:Animal_List' %}">飼育方法の閲覧</a>
       </div>
     </div>
-{% block content %}
-<
+    {% block content %}
+</div>
+
+
+
 {% endblock content %}
 
   </body>

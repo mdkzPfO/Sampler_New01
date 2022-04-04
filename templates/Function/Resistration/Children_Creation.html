@@ -1,42 +1,56 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block header %}
-<link rel="stylesheet"  type="text/text/css" href="{% static 'style.css' %}">
+<header>
+  <div class="header_title">
+    <h1>実験生物管理-Sampler</h1>
+  </div>
+  <div class="header_login">
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+    </div>
+    <div class="login_user">
+      {% if user.is_anonymous %}
+      <a>ユーザー:ゲスト</a>
+      {% else %}
+      <a>ユーザー；{{ user }}</a>
+      {% endif %}
+    </div>
+    <div class="logout">
+      <a href="#">ログアウト</a>
+    </div>
+
+  </div>
+</header>
 {% endblock header %}
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container">
-  <div class="Function_List">
-    <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
-  </div>
+<div class="container_check">
+<!-- Functionの各ツールに飛ぶリンクまとめ -->
   <!-- サンプリング方法を記録する箱 -->
   <div class="Sampling_PageFrame">
     <!-- 以下の情報を取得する
-    Animal
-    purpose
-    manager
-    wash
-    wash_frequency
-    feed
-    feed_howto
-    feed_frequency
-    temprature
-    location -->
+date
+title
+animal
+purpose
+method
+contorl number
+situation
+experiment number
+experiment situation -->
 <!-- 日付とタイトル -->
   <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-  <p>追加する生物名:<input type="text" name="Animal" value=""></p>
-  <p>利用目的:<input type="text" name="purpose" value=""></p>
-  <p>管理者:<input type="text" name="manager" value=""></p>
-  <p>清掃方法:<input type="text" name="wash" value=""></p>
-  <p>清掃頻度:<input type="text" name="wash_frequency" value=""></p>
-  <p>餌:<input type="text" name="feed" value=""></p>
-  <p>餌の頻度:<input type="text" name="feed_frequency" value=""></p>
-  <p>適温:<input type="text" name="temprature" value=""></p>
-  <p>場所:<input type="text" name="location" value=""></p>
+  <div class="experiment_situation">
+    <div class="sampling_creation object">
+      <p>投稿者名&nbsp&nbsp&nbsp:<input type="text" name="Children_Name" required=True value=""></p>
+      <p>投稿者のメールアドレス&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="Children_Email" required=True value=""></p>
+    </div>
+  </div>
   <input type="hidden" name="author" value="{{ user.id }}">
   <input type="submit" name="" value="作成する">
   </form>
+
 <!-- ユーザーステータス -->
   <div class="User_Frame">
     <!-- loginしているUser名の表示 -->

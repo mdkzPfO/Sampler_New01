@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block header %}
-<link rel="stylesheet"  type="text/text/css" href="{% static 'style.css' %}">
+
+<header>
+  <div class="header_title">
+    <h1>実験生物管理-Sampler</h1>
+  </div>
+  <div class="header_login">
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+    </div>
+    <div class="login_user">
+      {% if user.is_anonymous %}
+      <a>ユーザー:ゲスト</a>
+      {% else %}
+      <a>ユーザー；{{ user }}</a>
+      {% endif %}
+    </div>
+    <div class="logout">
+      <a href="#">ログアウト</a>
+    </div>
+
+  </div>
+</header>
 {% endblock header %}
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container">
-  <div class="Function_List">
-    <a href="{% url 'exp1app:Top_Page' %}">Topに戻る</a>
-  </div>
+<div class="container_check">
 
 <!-- サンプリングデータを閲覧する -->
   <div class="Sampling_CheckFrame">
@@ -22,6 +39,7 @@
       <h1>{{ object.title }}</h1>
       <!--  対象生物　-->
       <h3>{{ object.animal }}</h3>
+      <h3>{{ object.user }}</h3>
     </div>
     <!-- 詳細 -->
     <div class="SCF_container">
