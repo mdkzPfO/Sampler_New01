@@ -15,6 +15,9 @@ from django.views.generic import ListView
 def TopPageView(request):
     return render(request,'Function/Top_Page.html',{})
 
+class BMI:
+    print("xx")
+
 
 class UserChildrenCreationView(CreateView):
     template_name='Function/Resistration/Children_Creation.html'
