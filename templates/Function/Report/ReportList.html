@@ -38,9 +38,9 @@
           <p>{{ item.title }}</p>
           <p>{{ item.datetime.date }}</p>
           <p>{{ item.datetime.time }}</p>
-          <a href="{% url 'exp1app:SamplingList_Detail' item.pk %}">詳細</a>
-          <a href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
-          <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
+          <a href="{% url 'exp1app:ReportList_Detail' item.pk %}">詳細</a>
+          <a href="{% url 'exp1app:ReportList_Delete' item.pk %}">削除</a>
+          <a href="{% url 'exp1app:ReportList_Update' item.pk %}">更新</a>
         </div>
     {% endfor %}
   </div>

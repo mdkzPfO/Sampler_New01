@@ -8,13 +8,13 @@ EVALUATION_CHOICES=[('良い','良い'),('悪い','悪い')]
 #サンプリングのデータベース
 class SamplingModel(models.Model):
     title=models.CharField(max_length=100,null=True,default=None)
-    animal=models.TextField(null=True,default=None)
-    purpose=models.TextField(null=True,default=None)
-    method=models.TextField(null=True,default=None)
-    control_number=models.TextField(null=True,default=None)
-    control_situation=models.TextField(null=True,default=None)
-    experiment_number=models.TextField(null=True,default=None)
-    experiment_situation=models.TextField(null=True,default=None)
+    animal=models.CharField(max_length=100,null=True,default=None)
+    purpose=models.CharField(max_length=100,null=True,default=None)
+    control_number=models.CharField(max_length=100,null=True,default=None)
+    method=models.CharField(max_length=100,null=True,default=None)
+    control_situation=models.CharField(max_length=100,null=True,default=None)
+    experiment_number=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation=models.CharField(max_length=100,null=True,default=None)
     datetime = models.DateTimeField(default=timezone.now)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
 #毎日のレポートのデータベース

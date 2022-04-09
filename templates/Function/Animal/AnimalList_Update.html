@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block header %}
-
 <header>
   <div class="header_title">
     <h1>実験生物管理-Sampler</h1>
@@ -17,8 +16,9 @@
       {% endif %}
     </div>
     <div class="logout">
-      <a href="#">ログアウト</a>
+      <a href="{% url 'accounts:logout' %}">ログアウト</a>
     </div>
+
   </div>
 </header>
 {% endblock header %}
@@ -26,75 +26,16 @@
 {% block content %}
 <!-- 中身 -->
 <div class="container_check">
+<!-- Functionの各ツールに飛ぶリンクまとめ -->
+  <!-- サンプリング方法を記録する箱 -->
+  <div class="Sampling_PageFrame">
+    <form method="post" novalidate>
+        {% csrf_token %}
 
-<!-- サンプリングデータを閲覧する -->
-  <div class="Sampling_CheckFrame">
-    <div class="SCF_header">
-      <!-- 日付 -->
-      <div class="">
-        <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
-
-      </div>
-      <h1>{{ object.title }}</h1>
-      <!--  対象生物　-->
-      <h3>{{ object.animal }}</h3>
-    </div>
-    <!-- 詳細 -->
-    <div class="SCF_container">
-      <div class="SCF_Summary">
-        <!-- サンプリング目的 -->
-        <div class="">
-          <p>{{ object.purpose }}</p>
-        </div>
-        <!-- サンプリング手法 -->
-        <div class="">
-          <p>{{ object.method}}</p>
-        </div>
-      </div>
-      <div class="SCF_Group">
-        <!-- コントロールグループ -->
-        <div class="SCFG_Control">
-          <!-- N数 -->
-          <div class="">
-            <p>Control :{{ object.control_number }}</p>
-          </div>
-          <!-- コントロール条件 -->
-          <div class="SCFG_Situation">
-            <p>実験条件:{{ object.control_situation }}</p>
-          </div>
-        </div>
-        <!-- 実験グループ(複数グループも考慮すべき？？) -->
-        <div class="">
-          <div class="SCFG_Experiment">
-            <!-- N数 -->
-            <div class="">
-              <p>Experiment :{{ object.experiment_number }}</p>
-            </div>
-            <!-- 実験群の条件 -->
-            <div class="SCFG_Situation">
-              <p>実験条件：{{ object.experiment_situation }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 保存方法(今は作成しない) -->
-      <!-- 補足(今は作成しない) -->
-      <!--担当者(今は作成しない) -->
-    </div>
-
+        {{ form.as_p }}
+        <input type="submit" value="保存">
+    </form>
   </div>
-<!-- ユーザーステータス -->
-  <div class="User_Frame">
-    <!-- loginしているUser名の表示 -->
-    <!-- アカウント情報に関する編集(今は作成しない) -->
-    <div class="">
-
-    </div>
-
-  </div>
-
-
 </div>
 {% endblock content %}
 

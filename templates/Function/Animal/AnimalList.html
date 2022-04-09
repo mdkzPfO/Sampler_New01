@@ -35,10 +35,10 @@
     {% for item in object_list %}
         <div class="Sampling_ListBox">
           <p>{{ item.user }}</p>
-          <p>{{ item.title }}</p>
+          <p>{{ item.animal }}</p>
           <a href="{% url 'exp1app:AnimalList_Detail' item.pk %}">詳細</a>
           <a href="{% url 'exp1app:AnimalList_Delete' item.pk %}">削除</a>
-          <a href="{% url 'exp1app:ANimalList_Update' item.pk %}">更新</a>
+          <a href="{% url 'exp1app:AnimalList_Update' item.pk %}">更新</a>
         </div>
     {% endfor %}
   </div>

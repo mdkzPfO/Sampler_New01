@@ -59,7 +59,7 @@ class SamplingList(ListView):
 class SamplingList_Create(CreateView):
     template_name='Function/Sampling/SamplingList_Create.html'
     model=SamplingModel
-    fields=['title','animal','purpose','method','control_number','control_situation','experiment_number','experiment_situation']
+    fields=['animal','title','purpose','method','control_number','control_situation','experiment_number','experiment_situation']
     success_url=reverse_lazy('exp1app:Sampling_List')
 
     def post(self, request, *args, **kwargs):
@@ -73,18 +73,28 @@ class SamplingList_Create(CreateView):
         qryset.user=self.request.user
         qryset.save()
         return  redirect('exp1app:Sampling_List')
-#a
-
 
 #更新時に値が格納されていないものがあっても許容する
 #値が格納されていなければ、既に設定されているデータを変更しない
 #既存のデータを上に出したほうが見栄えがよさそう
 class SamplingList_Update(UpdateView):
-    template_name = "Function/Sampling/SamplingList_Create.html"
+    template_name = "Function/Sampling/SamplingList_Update.html"
     fields =('title','animal','purpose','method','control_number','control_situation','experiment_number','experiment_situation')
     model=SamplingModel
     def get_success_url(self):
-        return reverse('exp1app:SamplingList_Update', kwargs={'pk': self.object.pk})
+        return reverse('exp1app:SamplingList_Detail', kwargs={'pk': self.object.pk})
+
+    def get_form(self):
+        form = super(SamplingList_Update, self).get_form()
+        form.fields['title'].label='サンプリング名'
+        form.fields['animal'].label='サンプリング対象'
+        form.fields['purpose'].label='サンプリング目的'
+        form.fields['method'].label='サンプリング方法'
+        form.fields['control_number'].label='コントロール数'
+        form.fields['control_situation'].label='コントロール条件'
+        form.fields['experiment_number'].label='実験群'
+        form.fields['experiment_situation'].label='実験条件'
+        return form
 
 class SamplingList_Delete(DeleteView):
     model = SamplingModel
@@ -99,7 +109,7 @@ class SamplingList_Detail(DetailView):
 
 
 class AnimalList(ListView):
-    template_name = 'Function/Sampling/AnimalList.html'
+    template_name = 'Function/Animal/AnimalList.html'
     model=AnimalModel
     paginate_by=2
     def get_queryset(self):
@@ -133,13 +143,25 @@ class AnimalList_Create(CreateView):
         return  redirect('exp1app:Animal_List')
 
 class AnimalList_Update(UpdateView):
-    template_name = "Function/Animal/AnimalList_Create.html"
+    template_name = "Function/Animal/AnimalList_Update.html"
 
     fields=('animal','animal_purpose','manager','wash','wash_frequency','feed','feed_frequency','temprature','location')
     model=AnimalModel
     def get_success_url(self):
-        return reverse('exp1app:AnimalList_Updatel', kwargs={'pk': self.object.pk})
+        return reverse('exp1app:AnimalList_Detail', kwargs={'pk': self.object.pk})
 
+    def get_form(self):
+        form = super(AnimalList_Update, self).get_form()
+        form.fields['animal'].label='生物名'
+        form.fields['animal_purpose'].label='飼育目的'
+        form.fields['manager'].label='管理責任者'
+        form.fields['wash'].label='洗浄方法'
+        form.fields['wash_frequency'].label='洗浄頻度'
+        form.fields['feed'].label='餌'
+        form.fields['feed_frequency'].label='餌頻度'
+        form.fields['temprature'].label='適温'
+        form.fields['location'].label='場所'
+        return form
 class AnimalList_Delete(DeleteView):
     model = AnimalModel
     context_object_name = "AnimalModel"
@@ -147,7 +169,7 @@ class AnimalList_Delete(DeleteView):
     success_url = reverse_lazy("exp1app:Animal_List")
 
 class AnimalList_Detail(DetailView):
-    model=SamplingModel
+    model=AnimalModel
     context_object_name = "AnimalModel"
     template_name="Function/Animal/AnimalList_Detail.html"
 
@@ -193,11 +215,17 @@ class ReportList_Create(CreateView):
 #値が格納されていなければ、既に設定されているデータを変更しない
 #既存のデータを上に出したほうが見栄えがよさそう
 class ReportList_Update(UpdateView):
-    template_name = "Function/Report/ReportList_Create.html"
+    template_name = "Function/Report/ReportList_Update.html"
     fields=('status','suggestion')
     model=ReportModel
     def get_success_url(self):
-        return reverse('exp1app:ReportList_Update', kwargs={'pk': self.object.pk})
+        return reverse('exp1app:ReportList_Detail', kwargs={'pk': self.object.pk})
+
+    def get_form(self):
+        form = super(ReportList_Update, self).get_form()
+        form.fields['status'].label='ステータス'
+        form.fields['suggestion'].label='報告'
+        return form
 
 class ReportList_Delete(DeleteView):
     model = ReportModel

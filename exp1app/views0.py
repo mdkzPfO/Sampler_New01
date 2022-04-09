@@ -59,22 +59,29 @@ class SamplingList(ListView):
 class SamplingList_Create(CreateView):
     template_name='Function/Sampling/SamplingList_Create.html'
     model=SamplingModel
-    fields=['title','animal','purpose','method','control_number','control_situation','experiment_number','experiment_situation']
+    fields=['animal','title','purpose','method','control_number','control_situation','experiment_number','experiment_situation']
     success_url=reverse_lazy('exp1app:Sampling_List')
 
     def post(self, request, *args, **kwargs):
+        print("テステス00")
+        machida=[i for i in kwargs]
+        print(machida)
+        print("テステス01")
         form = self.get_form()
+        print(form)
+        print("テステス02")
         if form.is_valid():
             return self.form_valid(form)
         else:
+            print("テステス2")
+            print(form)
             return self.form_invalid(form)
     def form_valid(self, form):
+        print("テステス")
         qryset =  form.save(commit=False)
         qryset.user=self.request.user
         qryset.save()
         return  redirect('exp1app:Sampling_List')
-
-
 
 #更新時に値が格納されていないものがあっても許容する
 #値が格納されていなければ、既に設定されているデータを変更しない

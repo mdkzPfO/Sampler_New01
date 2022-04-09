@@ -36,21 +36,21 @@
         <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
 
       </div>
-      <h1>{{ object.title }}</h1>
+      <h1>{{ object.animal }}</h1>
       <!--  対象生物　-->
-      <h3>{{ object.animal }}</h3>
       <h3>{{ object.user }}</h3>
+      <h3>{{ object.animal_purpose }}</h3>
     </div>
     <!-- 詳細 -->
     <div class="SCF_container">
       <div class="SCF_Summary">
         <!-- サンプリング目的 -->
         <div class="">
-          <p>{{ object.purpose }}</p>
+          <p>{{ object.manager }}</p>
         </div>
         <!-- サンプリング手法 -->
         <div class="">
-          <p>{{ object.method}}</p>
+          <p>{{ object.wash }}</p>
         </div>
       </div>
       <div class="SCF_Group">

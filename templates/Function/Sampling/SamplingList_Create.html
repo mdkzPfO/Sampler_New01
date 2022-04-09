@@ -21,7 +21,6 @@
 
   </div>
 </header>
-
 {% endblock header %}
   <body>
 {% block content %}
@@ -45,10 +44,12 @@ experiment situation -->
  <a href="{% url 'exp1app:Children_Creation' %}">+新規作成</a>
 -->
   <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <p>サンプリング名&nbsp&nbsp&nbsp:<input type="text" name="title" required=True></p>
         <p>対象生物&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="animal" required=True></p>
 
-        <p>サンプリング目的:</p><textarea type="text" name="pusepose" required=True class="Long_Input_Box"></textarea>
+        <p>サンプリング名&nbsp&nbsp&nbsp:<input type="text" name="title" required=True></p>
+        <p>サンプリング目的:</p><textarea type="text" name="purpose" required=True class="Long_Input_Box"></textarea>
+
+
 
         <p>サンプリング方法:</p><textarea type="text" name="method" required=True class="Long_Input_Box"></textarea>
 
@@ -58,6 +59,7 @@ experiment situation -->
 
         <p>実験群：サンプル数&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><input type="text" name="experiment_number" required=True>
         <p>実験群：実験条件&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><textarea type="text" name="experiment_situation" required=True class="Long_Input_Box"></textarea>
+        <input type="hidden" name="user" value="{{ user }}">
         <input type="submit" name="" value="作成する">
   </form>
 
