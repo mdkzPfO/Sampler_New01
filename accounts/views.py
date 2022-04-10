@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import User
 from django.utils.http import (
     urlsafe_base64_encode,url_has_allowed_host_and_scheme, urlsafe_base64_decode,

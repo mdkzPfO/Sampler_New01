@@ -34,7 +34,3 @@ class AnimalModel(models.Model):
     temprature=models.TextField(null=True)
     location=models.TextField(null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
-class UseChildrenModel(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
-    Children_Name=models.TextField(null=True,default="Guest")
-    Children_Email=models.TextField(null=True,default="Guest")

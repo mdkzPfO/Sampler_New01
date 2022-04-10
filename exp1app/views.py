@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy,reverse
 from django.views.generic import CreateView,DetailView,DeleteView,UpdateView
-from .models import SamplingModel,ReportModel,AnimalModel,UseChildrenModel
+from .models import SamplingModel,ReportModel,AnimalModel
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User,Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse,HttpResponseRedirect
@@ -16,25 +17,36 @@ def TopPageView(request):
     return render(request,'Function/Top_Page.html',{})
 
 
-class UserChildrenCreationView(CreateView):
-    template_name='Function/Resistration/Children_Creation.html'
-    model=UseChildrenModel
-    fields=('Children_Name','Children_Email')
+class Group_Create(CreateView):
+    template_name='Function/Resistration/Group_Create.html'
+    model=Group
+    model2=User
+    fields=['name']
     success_url=reverse_lazy('exp1app:Top_Page')
     def post(self, request, *args, **kwargs):
-        user = request.user
+        print("よさこい6")
         form = self.get_form()
+        print(form)
+        print("よさこい２")
         if form.is_valid():
+            print("よさこい3")
+            print(form)
             return self.form_valid(form)
         else:
+            print("よさこい")
             return self.form_invalid(form)
+###ここではグループ管理者が手に入れたグループ名をグループ管理者のユーザー名と紐づけたい
+##苦戦しているのは、self.objectによって取得した値をうまくUserテーブルのグループに貶めないこと
+##やるべきことは、管理者ユーザー名でUserテーブルの特定の行を呼び出し
+##呼び出した行のgroupsをNoneからself.objectの値、すなわちグループ名に更新する
+##今のところ特定の行を呼び出すことには成功したが、
+##グループ名を割り当てようとすると、エラーをはいている
+##原因はmanytomanyの性質を持つ、フィールドに対して更新処理を行おうとしているかららしい。
     def form_valid(self, form):
-        qryset =  form.save(commit=False)
-        qryset.user=self.request.user
-        qryset.save()
-        return  redirect('exp1app:Top_Page')
-
-
+        #この時点でグループ名は固定されたはず
+        ##SQLなら動くかどうか調査予定
+        self.object = form.save()
+        return super().form_valid(form)
 #ログインしたユーザーに合わせて表示させる画面を変えたい
 #その為にはログインユーザーの情報を取得する必要がある
 #現状はなぜか{{user}}でログインユーザーの情報を取得できている様子

@@ -1,10 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import TopPageView,ReportList,ReportList_Create,ReportList_Delete,ReportList_Detail,ReportList_Update,SamplingList,SamplingList_Delete,SamplingList_Detail,SamplingList_Update,SamplingList_Create,AnimalList,AnimalList_Create,AnimalList_Delete,AnimalList_Detail,AnimalList_Update,UserChildrenCreationView
+from .views import TopPageView,ReportList,ReportList_Create,ReportList_Delete,ReportList_Detail,ReportList_Update,SamplingList,SamplingList_Delete,SamplingList_Detail,SamplingList_Update,SamplingList_Create,AnimalList,AnimalList_Create,AnimalList_Delete,AnimalList_Detail,AnimalList_Update,Group_Create
 
 app_name='exp1app'
 urlpatterns=[
-path('Resistration/Children_Creation/',UserChildrenCreationView.as_view(),name='Children_Creation'),
 #どの操作を行うか選択するトップページ、今日の飼育履歴が画面下部に表示される
 path('Top_Page',TopPageView,name='Top_Page'),
 #サンプリングリスト
@@ -25,4 +24,7 @@ path('AnimalList_Create/',AnimalList_Create.as_view(),name="AnimalList_Create"),
 path('AnimalList_Detail/<int:pk>/',AnimalList_Detail.as_view(),name="AnimalList_Detail"),
 path('AnimalList_Delete/<int:pk>/',AnimalList_Delete.as_view(),name="AnimalList_Delete"),
 path('AnimalList_Update/<int:pk>/',AnimalList_Update.as_view(),name="AnimalList_Update"),
+#アカウント払い出し
+path('Manager/Group_Create',Group_Create.as_view(),name="Group_Create"),
+
 ]
