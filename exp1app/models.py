@@ -34,3 +34,6 @@ class AnimalModel(models.Model):
     temprature=models.TextField(null=True)
     location=models.TextField(null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
+class Original_GroupModel(models.Model):
+    origin_group=models.CharField(max_length=100,null=True)
+    slave_user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)

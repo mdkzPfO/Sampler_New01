@@ -31,57 +31,13 @@
 <!-- サンプリングデータを閲覧する -->
   <div class="Sampling_CheckFrame">
     <div class="SCF_header">
-        {{ perms.my_app.permission_code }}
-        {% if perms.my_app.permission_code %}
       <!-- 日付 -->
-      <div class="">
-        <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
-
-      </div>
-      <h1>{{ object.title }}</h1>
+      <h1>{{ object.username }}</h1>
       <!--  対象生物　-->
-      <h3>{{ object.animal }}</h3>
-      <h3>{{ object.user }}</h3>
-      {% endif %}
+      <h3>{{ object.email }}</h3>
     </div>
     <!-- 詳細 -->
     <div class="SCF_container">
-      <div class="SCF_Summary">
-        <!-- サンプリング目的 -->
-        <div class="">
-          <p>{{ object.purpose }}</p>
-        </div>
-        <!-- サンプリング手法 -->
-        <div class="">
-          <p>{{ object.method}}</p>
-        </div>
-      </div>
-      <div class="SCF_Group">
-        <!-- コントロールグループ -->
-        <div class="SCFG_Control">
-          <!-- N数 -->
-          <div class="">
-            <p>Control :{{ object.control_number }}</p>
-          </div>
-          <!-- コントロール条件 -->
-          <div class="SCFG_Situation">
-            <p>実験条件:{{ object.control_situation }}</p>
-          </div>
-        </div>
-        <!-- 実験グループ(複数グループも考慮すべき？？) -->
-        <div class="">
-          <div class="SCFG_Experiment">
-            <!-- N数 -->
-            <div class="">
-              <p>Experiment :{{ object.experiment_number }}</p>
-            </div>
-            <!-- 実験群の条件 -->
-            <div class="SCFG_Situation">
-              <p>実験条件：{{ object.experiment_situation }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- 保存方法(今は作成しない) -->
       <!-- 補足(今は作成しない) -->

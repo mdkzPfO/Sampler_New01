@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from .views import TopPageView,ReportList,ReportList_Create,ReportList_Delete,ReportList_Detail,ReportList_Update,SamplingList,SamplingList_Delete,SamplingList_Detail,SamplingList_Update,SamplingList_Create,AnimalList,AnimalList_Create,AnimalList_Delete,AnimalList_Detail,AnimalList_Update,Group_Create
-
+from .views import TopPageView,ReportList,ReportList_Create,ReportList_Delete,ReportList_Detail,ReportList_Update,SamplingList,SamplingList_Delete,SamplingList_Detail,SamplingList_Update,SamplingList_Create,AnimalList,AnimalList_Create,AnimalList_Delete,AnimalList_Detail,AnimalList_Update,Group_Create,UserCreationList,UserCreationList_Delete,UserCreationList_Detail,UserCreationList_Update
+from . import views as auth_views
 app_name='exp1app'
 urlpatterns=[
 #どの操作を行うか選択するトップページ、今日の飼育履歴が画面下部に表示される
@@ -26,5 +26,13 @@ path('AnimalList_Delete/<int:pk>/',AnimalList_Delete.as_view(),name="AnimalList_
 path('AnimalList_Update/<int:pk>/',AnimalList_Update.as_view(),name="AnimalList_Update"),
 #アカウント払い出し
 path('Manager/Group_Create',Group_Create.as_view(),name="Group_Create"),
+path('Manager/User_Creation/UserCreationList',UserCreationList.as_view(),name="User_List"),
+path('activation_request/', auth_views.activation_request, name='activation_request'),
+path('activate/<uidb64>/<token>/', auth_views.activate, name='activate'),
+path('Manager/User_Creation/signup/',auth_views.signup,name='default_signup'),
+path('Manager/User_Creation/UserCreationList_Delete/<int:pk>/',UserCreationList_Delete.as_view(),name="UserCreationList_Delete"),
+path('Manager/User_Creation/UserCreationList_Update/<int:pk>/',UserCreationList_Update.as_view(),name="UserCreationList_Update"),
+path('Manager/User_Creation/UserCreationList_Detail/<int:pk>/',UserCreationList_Detail.as_view(),name="UserCreationList_Detail"),
+
 
 ]
