@@ -1,45 +1,90 @@
 <!doctype html>
 <html lang="ja">
   <head>
+
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- Required meta tags -->
 {% load static %}
     <meta charset="utf-8">
     <link rel="stylesheet"  type="text/css" href="{% static 'style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    
 
-    <title>実験生物管理-Sampler</title>
+
+    <title>Sampler</title>
 </head>
 
 <body>
 
 
+
 {% block header %}
 {% endblock header %}
-  <div class="container">
+<div class="container">
+  <div class="Function_ListBox">
     <div class="Function_ListFrame">
-    <!-- 可能ならリンクに触れると、その下に資料の作成か確認かを選べるリンクが表示される仕組みを作りたい -->
       <div class="Function_List">
-        <a href="{% url 'exp1app:SamplingList_Create' %}">サンプリング資料の作成</a>
+        <a href="{% url 'exp1app:SamplingList_Create' %}">ダッシュボード</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:Sampling_List' %}">サンプリングリストの確認</a>
+        <a class="Sampling" href="{% url 'exp1app:Sampling_List' %}">サンプリングリスト</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:ReportList_Create' %}">飼育日誌の作成</a>
+          <a  class="Report" href="{% url 'exp1app:Report_List' %}">飼育日誌</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:Report_List' %}">飼育日誌の閲覧</a>
+        <a class="Animal" href="{% url 'exp1app:Animal_List' %}">飼育方法</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:AnimalList_Create' %}">飼育方法/動物情報の作成</a>
+        <a href="{% url 'exp1app:Animal_List' %}">グループチャット</a>
       </div>
       <div class="Function_List">
-        <a href="{% url 'exp1app:Animal_List' %}">飼育方法の閲覧</a>
+        <a href="{% url 'exp1app:Animal_List' %}">通知</a>
+      </div>
+      <div class="Function_List">
+        <a href="{% url 'exp1app:User_List' %}">アカウント管理</a>
+      </div>
+      <div class="Function_List">
+        <a href="{% url 'exp1app:User_List' %}">設定</a>
       </div>
     </div>
-    {% block content %}
-</div>
+    <div class="Function_List_HiddenFrame">
+      <div class="Sampling_HiddenFrame">
+        <div class="Function_List">
+            <a class="Sampling" href="{% url 'exp1app:SamplingList_Create' %}">サンプリング資料の作成</a>
+        </div>
+        <div class="Function_List">
+          <a class="Sampling" href="{% url 'exp1app:Sampling_List' %}">サンプリングリストの確認</a>
+        </div>
+      </div>
+      <div class="Report_HiddenFrame">
+        <div class="Function_List">
+            <a class="Report" href="{% url 'exp1app:ReportList_Create' %}">飼育日誌の作成</a>
+        </div>
+        <div class="Function_List">
+            <a class="Report" href="{% url 'exp1app:Report_List' %}">飼育日誌の閲覧</a>
+        </div>
+      </div>
+      <div class="Animal_HiddenFrame">
+        <div class="Function_List">
+          <a class="Animal" href="{% url 'exp1app:AnimalList_Create' %}">飼育方法/動物情報の作成</a>
+        </div>
+        <div class="Function_List">
+          <a class="Animal" href="{% url 'exp1app:Animal_List' %}">飼育方法の閲覧</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+
+   <script src="../static/script.js"></script>
+
+    {% block content %}
 
 
 {% endblock content %}

@@ -2,78 +2,117 @@
 {% block header %}
 <header>
   <div class="header_title">
-    <h1>実験生物管理-Sampler</h1>
+    <h2>Sampler</h2>
   </div>
   <div class="header_login">
-    <div class="">
-      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
-    </div>
     <div class="login_user">
       {% if user.is_anonymous %}
-      <a>ユーザー:ゲスト</a>
+      <a><i class="fas fa-user"></i> ゲスト</a>
       {% else %}
-      <a>ユーザー；{{ user }}</a>
+      <a><i class="fas fa-user"></i> {{ user }}</a>
       {% endif %}
     </div>
-    <div class="logout">
-      <a href="{% url 'accounts:logout' %}">ログアウト</a>
-      <a href="{% url 'exp1app:User_List' %}">アカウント管理</a>
+    <div class="">
+      <a href="{% url 'exp1app:Top_Page' %}"><i class="fas fa-home"></i> TOPへ</a>
     </div>
+    <div class="logout">
+      <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> ログアウト</a>
+    </div>
+
 
   </div>
 </header>
 {% endblock header %}
 {% block content %}
 <!-- 中身 -->
-<div class="container_check">
-  <form action="" method="get">
-    <input name="query" value="{{ request.GET.query }}" type="text">
-    <button type="submit">検索する</button>
-  </form>
+<div class="Object_Place">
+  <div class="Search_Box">
 
-  <h3>リスト一覧</h3>
-  <div class="Sampling_ListFrame">
-    {% for item in object_list %}
-        <div class="Sampling_ListBox">
-          <p>{{ item.user }}</p>
-          <p>{{ item.title }}</p>
-          <p>{{ item.datetime.date }}</p>
-          <p>{{ item.datetime.time }}</p>
-          <a href="{% url 'exp1app:SamplingList_Detail' item.pk %}">詳細</a>
-          <a href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
-          <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
-        </div>
-    {% endfor %}
+
+
+    <h4>　<i class="fas fa-search"></i>絞り込み</h4>
+    <form action="" method="get" >
+      <input name="query" value="{{ request.GET.query }}" type="text" label="どすこい">
+      <button type="submit">検索する</button>
+    </form>
+    <h4>　<i class="fas fa-user"></i>ユーザー</h4>
+    <h4>　<i class="fas fa-tags"></i>タグ</h4>
+    <h4>　<i class="fas fa-calendar-alt"></i>期間</h4>
+
   </div>
-<!-- ユーザーステータス -->
-  <div class="User_Frame">
-    <!-- loginしているUser名の表示 -->
-    <!-- アカウント情報に関する編集(今は作成しない) -->
-    <div class="">
+  <div class="container_check">
+    <div class="container_header">
+      <div class="container_name">
+        <p>リスト一覧</p>
+      </div>
+    </div>
+    <div class="Sampling_ListFrame">
+      <table border="1">
+        <tr>
+          <td></td>
+          <th>ユーザー名</th>
+          <th>タイトル</th>
+          <th>サンプリング日</th>
+          <th>更新日</th>
+          <th>編集</th>
+        </tr>
+      {% for item in object_list %}
+        <tr>
+         <td><input type="checkbox" /></td>
+         <th>{{ item.user }}</th>
+         <th><a href="{% url 'exp1app:SamplingList_Detail' item.pk %}">{{ item.title }}</a></th>
+         <th>{{ item.datetime.date }}</th>
+         <th>{{ item.datetime.time}}</th>
+         <th><div class="container_action" id="test">
+             <a id="test"><i class="fas fa-edit"></i></a>
+             <div class="container_action_name" id="test">
+               <a  href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
+             </div>
+             <div class="container_action_name" id="test">
+               <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
 
+             </div>
+             <div class="container_action_name" id="test">
+               <a href="#">出力</a>
+
+             </div>
+           </div></th>
+        </tr>
+
+      {% endfor %}
+      </table>
     </div>
 
+  <!-- ユーザーステータス -->
+    <div class="User_Frame">
+      <!-- loginしているUser名の表示 -->
+      <!-- アカウント情報に関する編集(今は作成しない) -->
+      <div class="">
+
+      </div>
+    </div>
+  </div>
+  <div class="">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+    {% endif %}
+
+    <!-- 数字部分 -->
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <span>{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    <!-- 「次へ」 の部分 -->
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+    {% endif %}
   </div>
 
-
 </div>
-{% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
-{% endif %}
-
-<!-- 数字部分 -->
-{% for num in page_obj.paginator.page_range %}
-    {% if page_obj.number == num %}
-        <span>{{ num }}</span>
-    {% else %}
-        <a href="?page={{ num }}">{{ num }}</a>
-    {% endif %}
-{% endfor %}
-
-<!-- 「次へ」 の部分 -->
-{% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">次へ</a>
-{% endif %}
 {% endblock content %}
 
     <!-- Optional JavaScript; choose one of the two! -->

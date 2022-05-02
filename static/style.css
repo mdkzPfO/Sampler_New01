@@ -1,16 +1,25 @@
 body{
-  background-color: #EEEEEE;
+  background-color:#EEEEEE;
   margin:0;
 }
 header{
-  margin-right:70px;
-  margin-left:70px;
   background-size:cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:pink;
-  font-size: 10pt;
+  background-color:#336699	;
+  font-size: 8pt;
+  box-sizing : border-box;
+  color:white;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+icon::after {
+　　font-family: "Font Awesome 5 Pro";
+　　font-weight: 900;
+　　display: inline-block;
+　　content: "\f640";
 }
 
 .header_title{
@@ -18,16 +27,19 @@ header{
   float: left;
   align-items: center;
   width:600px;
-  height:50px;
+  height:50px;#EEEEEE
   margin-left: 10px;
 }
 .header_title h1{
   margin-right:10px;
 }
+
 .login_user{
   float:right;
-  color:black;
-
+  color:white;
+}
+.logout{
+  color:white;
 }
 .login_box{
   float:right;
@@ -38,32 +50,60 @@ header{
 }
 .header_login{
   margin: 0 0 0 auto;
-  background-color: white;
-  border:solid 0.5px;
-  padding-right: 10px;
-  padding-left: 10px;
+  background-color: #336699;
+  display: flex;
+  flex-direction: column;
+  padding-right:10px;
+}
+.header_login a {
+color:white;
+text-decoration:underline;
 }
 .container{
-  background-color:#FFFF99;
   background-size:cover;
   font-size: 10pt;
-  margin-left: 70px;
-  margin-right:70px;
   margin-top:0;
   margin-bottom: 0;
   padding-top:0;
   padding-bottom: 0;
+  display: flex;
+  display: inline;
 }
 
 .container_check{
-  background-color:white;
-  height:850px;
-  padding: 10px;
-  width:750px;
-  margin:0 auto;
+  float:right;
+  height:500px;
+  padding:10px;
+  width:600px;
+  border:2px solid #336699;
+  background-color: white;
+}
+.container_name{
+  float: left;
+}
+.container_header{
+  width:90%;
+  height:40px;
+  padding:10px;
+  z-index:50;
+}
+.container_action{
+  float:right;
+  background-color:#336699;
+  width:50px;
+  text-align: center;
+  z-index:120;
+  position:relative;
+  color:white;
+}
+.container_action_name{
+  display: none;
+  position:relative;
+  z-index: 90;
+  color:white;
 }
 .container_accounts{
-  background-color:white;
+  background-color:pink;
   background-size:cover;
   font-size: 10pt;
   margin-left: 70px;
@@ -107,6 +147,11 @@ header{
   float:left;
   text-align: left;
 }
+.Object_Place{
+  display: flex;
+  position:relative;right:150px;
+  z-index: 1;
+}
 .login_form{
   color:white;
 }
@@ -122,25 +167,90 @@ header{
   color:white;
 }
 .Function_ListFrame{
+
+
     /*コレ追加*/
-    display: flex;
-    justify-content: space-around;
+    display: inline-block;
     align-items: center;
-    border: 1px solid #333;
-    background-color:#F0E0E0;
-    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    float:left;
+    height:500px;
+    color:white;
+    background-color:#336699;
+    width:200px;
+}
+.Function_ListBox{
+  float:left;
+  height:500px;
+  color:grey;
+  width:400px;
+  display: flex;
+  z-index: 30;
+
+}
+.Function_List_HiddenFrame{
+  display: inline-block;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  float:left;
+  height:500px;
+  color:white;
+  width:200px;
+  opacity: 0;
+
+
+}
+.Sampling_HiddenFrame{
+  display: None;
+}
+.Animal_HiddenFrame{
+  display: None;
+}
+.Report_HiddenFrame{
+  display: None;
 }
 .Function_List{
-  height: 40px;
-  display: flex;
-  justify-content:space-around;
-  align-items: center;
+  border:0.1px solid black;
+  width:100%;
+  float:left;
+  background-color:	#336699	;
+  margin-right: 3px;
+
+
 }
 .Function_List a{
   text-decoration: none;
-  color:black;
+  color:white;
+  height: 35px;
+  display: flex;
+  color:white;
+  float:left;
+  justify-content:space-around;
+  align-items: center;
+  margin:0px 10px 5px 10px;
 }
+.Search_Box{
+  background-color:white;
+  width:200px;
+  border:1px solid black;
+  height:400px;
 
+}
+.Comment_Box{
+  background-color:white;
+  width:200px;
+  border:1px solid black;
+  height:400px;
+}
+.Template_Box{
+  background-color:white;
+  width:200px;
+  border:1px solid black;
+  height:400px;
+
+}
 /* サンプリング作成のCSS*/
 .experiment_situation{
   border:solid 1px grey;
@@ -177,6 +287,10 @@ header{
   margin:2px;
   height:15px;
   text-decoration: underline white;
+}
+.Sampling_ListFrame{
+  z-index:10;
+  position:relative;
 }
 .Report_ListBox{
   border:solid 4px #FF3333;

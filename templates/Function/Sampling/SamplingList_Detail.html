@@ -26,81 +26,87 @@
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container_check">
+<div class="Object_Place">
+  <div class="Comment_Box">
 
-<!-- サンプリングデータを閲覧する -->
-  <div class="Sampling_CheckFrame">
-    <div class="SCF_header">
-        {{ perms.my_app.permission_code }}
-        {% if perms.my_app.permission_code %}
-      <!-- 日付 -->
-      <div class="">
-        <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
+  </div>
+  <div class="container_check">
 
-      </div>
-      <h1>{{ object.title }}</h1>
-      <!--  対象生物　-->
-      <h3>{{ object.animal }}</h3>
-      <h3>{{ object.user }}</h3>
-      {% endif %}
-    </div>
-    <!-- 詳細 -->
-    <div class="SCF_container">
-      <div class="SCF_Summary">
-        <!-- サンプリング目的 -->
+  <!-- サンプリングデータを閲覧する -->
+    <div class="Sampling_CheckFrame">
+      <div class="SCF_header">
+          {{ perms.my_app.permission_code }}
+          {% if perms.my_app.permission_code %}
+        <!-- 日付 -->
         <div class="">
-          <p>{{ object.purpose }}</p>
+          <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
+
         </div>
-        <!-- サンプリング手法 -->
-        <div class="">
-          <p>{{ object.method}}</p>
-        </div>
+        <h1>{{ object.title }}</h1>
+        <!--  対象生物　-->
+        <h3>{{ object.animal }}</h3>
+        <h3>{{ object.user }}</h3>
+        {% endif %}
       </div>
-      <div class="SCF_Group">
-        <!-- コントロールグループ -->
-        <div class="SCFG_Control">
-          <!-- N数 -->
+      <!-- 詳細 -->
+      <div class="SCF_container">
+        <div class="SCF_Summary">
+          <!-- サンプリング目的 -->
           <div class="">
-            <p>Control :{{ object.control_number }}</p>
+            <p>{{ object.purpose }}</p>
           </div>
-          <!-- コントロール条件 -->
-          <div class="SCFG_Situation">
-            <p>実験条件:{{ object.control_situation }}</p>
+          <!-- サンプリング手法 -->
+          <div class="">
+            <p>{{ object.method}}</p>
           </div>
         </div>
-        <!-- 実験グループ(複数グループも考慮すべき？？) -->
-        <div class="">
-          <div class="SCFG_Experiment">
+        <div class="SCF_Group">
+          <!-- コントロールグループ -->
+          <div class="SCFG_Control">
             <!-- N数 -->
             <div class="">
-              <p>Experiment :{{ object.experiment_number }}</p>
+              <p>Control :{{ object.control_number }}</p>
             </div>
-            <!-- 実験群の条件 -->
+            <!-- コントロール条件 -->
             <div class="SCFG_Situation">
-              <p>実験条件：{{ object.experiment_situation }}</p>
+              <p>実験条件:{{ object.control_situation }}</p>
+            </div>
+          </div>
+          <!-- 実験グループ(複数グループも考慮すべき？？) -->
+          <div class="">
+            <div class="SCFG_Experiment">
+              <!-- N数 -->
+              <div class="">
+                <p>Experiment :{{ object.experiment_number }}</p>
+              </div>
+              <!-- 実験群の条件 -->
+              <div class="SCFG_Situation">
+                <p>実験条件：{{ object.experiment_situation }}</p>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- 保存方法(今は作成しない) -->
+        <!-- 補足(今は作成しない) -->
+        <!--担当者(今は作成しない) -->
       </div>
 
-      <!-- 保存方法(今は作成しない) -->
-      <!-- 補足(今は作成しない) -->
-      <!--担当者(今は作成しない) -->
     </div>
+  <!-- ユーザーステータス -->
+    <div class="User_Frame">
+      <!-- loginしているUser名の表示 -->
+      <!-- アカウント情報に関する編集(今は作成しない) -->
+      <div class="">
 
-  </div>
-<!-- ユーザーステータス -->
-  <div class="User_Frame">
-    <!-- loginしているUser名の表示 -->
-    <!-- アカウント情報に関する編集(今は作成しない) -->
-    <div class="">
+      </div>
 
     </div>
 
+
   </div>
-
-
 </div>
+
 {% endblock content %}
 
     <!-- Optional JavaScript; choose one of the two! -->

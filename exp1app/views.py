@@ -26,6 +26,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 
+from pure_pagination.mixins import PaginationMixin
 ###############################################################################アカウント作成関連-------------------------------ここから-------------------------------------------------------
 ##管理者によるユーザー追加---------------------ここから---------------------------
 ##詳細：参照するファイルをexp1appの中のファイルにしている。ほとんどaccountsアプリと同じ。元はdjangoに組み込まれているauthの認証機能だが、自分のフォームに合わせる為に、一部を変更している。
@@ -217,10 +218,10 @@ def TopPageView(request):
 #その為にはログインユーザーの情報を取得する必要がある
 #現状はなぜか{{user}}でログインユーザーの情報を取得できている
 
-class SamplingList(ListView):
+class SamplingList(PaginationMixin,ListView):
     template_name = 'Function/Sampling/SamplingList.html'
     model=SamplingModel
-    paginate_by=2
+    paginate_by=10
     def get(self, request):
         #利用者の権限を確認する
         permission=self.request.user.get_group_permissions()

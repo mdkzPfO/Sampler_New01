@@ -2,31 +2,37 @@
 {% block header %}
 <header>
   <div class="header_title">
-    <h1>実験生物管理-Sampler</h1>
+    <h2>Sampler</h2>
   </div>
   <div class="header_login">
     <div class="">
-      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
+      <a href="{% url 'exp1app:Top_Page' %}"><i class="fas fa-home"></i>TOPへ</a>
     </div>
     <div class="login_user">
       {% if user.is_anonymous %}
-      <a>ユーザー:ゲスト</a>
+      <a><i class="fas fa-user"></i>ゲスト</a>
       {% else %}
-      <a>ユーザー；{{ user }}</a>
+      <a><i class="fas fa-user"></i>{{ user }}</a>
       {% endif %}
     </div>
     <div class="logout">
-      <a href="{% url 'accounts:logout' %}">ログアウト</a>
+      <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i>ログアウト</a>
     </div>
+
 
   </div>
 </header>
+
 <body>
 
 {% endblock header %}
 {% block content %}
 <!-- 中身 -->
+<div class="Search_Box">
+
+</div>
 <div class="container_check">
+
 <!-- ダッシュボード画面 -->
   <div class="Contents_Box_Frame">
     <!-- 昨日の飼育日誌へのリンクとざっくり情報(今は作成しない)-->
