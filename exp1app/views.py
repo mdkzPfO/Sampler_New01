@@ -222,8 +222,7 @@ class SamplingList(PaginationMixin,ListView):
     template_name = 'Function/Sampling/SamplingList.html'
     model=SamplingModel
     paginate_by=10
-    def get(self, request):
-        #利用者の権限を確認する
+    def get_queryset(self):
         permission=self.request.user.get_group_permissions()
         #もし閲覧権限があれば...
         if "exp1app.view_samplingmodel" in permission:
@@ -237,28 +236,37 @@ class SamplingList(PaginationMixin,ListView):
             for i in Same_Group_Users:
                 Same_Group_UsersList.append(i.slave_user)
             object_list=list()
+            q_word = self.request.GET.get('query')
+
             for i in Same_Group_UsersList:
                 Same_Groups_Users_Object = SamplingModel.objects.filter(user=i)
-                if Same_Groups_Users_Object.first() is None:
-                    continue
+                if q_word:
+                    q_word_users_object=SamplingModel.objects.filter(title__icontains=q_word)
+                    for i in q_word_users_object:
+                        print(i)
+                        print("よいよい")
+                    for i in Same_Groups_Users_Object:
+                        print(i)
+                        print("そいそい")
+                    if Same_Groups_Users_Object.first() is None:
+                        print("がーがー")
+                        continue
+                    else:
+                        for k in q_word_users_object:
+                            for j in Same_Groups_Users_Object:
+                                if k==j:
+                                    object_list.append(k)
+                                else:
+                                    continue
                 else:
-                    for k in Same_Groups_Users_Object:
-                        object_list.append(k)
-            context = {"object_list": object_list}
-            return render(request, 'Function/Sampling/SamplingList.html', context)
-        return redirect('exp1app:Top_Page')
-    def get_queryset(self):
-        if self.request.user.id is None:
-            logined_user=None
+                    if Same_Groups_Users_Object.first() is None:
+                        continue
+                    else:
+                        for k in Same_Groups_Users_Object:
+                                object_list.append(k)
+            return object_list
         else:
-            logined_user=self.request.user
-        object_list = SamplingModel.objects.filter( user = logined_user )
-        q_word = self.request.GET.get('query')
-        if q_word:
-            object_list = SamplingModel.objects.filter(
-                Q(title__icontains=q_word))
-        return object_list
-
+            return  redirect('exp1app:Top_Page')
 
 class SamplingList_Create(CreateView):
     template_name='Function/Sampling/SamplingList_Create.html'
@@ -296,8 +304,12 @@ class SamplingList_Update(UpdateView):
         self.object = self.get_object()
         permission=self.request.user.get_group_permissions()
         if "exp1app.change_samplingmodel" in permission:
+            print("カルボナーラ")
             return super().get(request, *args, **kwargs)
+        print("エンゲージ")
         return redirect('exp1app:Top_Page')
+    def get_success_url(self):
+        return reverse('exp1app:SamplingList_Detail', kwargs={'pk': self.object.pk})
     def get_form(self):
         form = super(SamplingList_Update, self).get_form()
         form.fields['title'].label='サンプリング名'
@@ -308,6 +320,7 @@ class SamplingList_Update(UpdateView):
         form.fields['control_situation'].label='コントロール条件'
         form.fields['experiment_number'].label='実験群'
         form.fields['experiment_situation'].label='実験条件'
+        print("アイコン")
         return form
 
 class SamplingList_Delete(DeleteView):

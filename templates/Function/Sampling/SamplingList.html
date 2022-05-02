@@ -23,6 +23,7 @@
   </div>
 </header>
 {% endblock header %}
+django-pure-pagination
 {% block content %}
 <!-- 中身 -->
 <div class="Object_Place">
@@ -31,11 +32,14 @@
 
 
     <h4>　<i class="fas fa-search"></i>絞り込み</h4>
+    <h4><i class="fab fa-searchengin"></i>タイトルで検索</h4>
     <form action="" method="get" >
-      <input name="query" value="{{ request.GET.query }}" type="text" label="どすこい">
+      <input name="query" value="{{ request.GET.query }}" type="text">
       <button type="submit">検索する</button>
     </form>
     <h4>　<i class="fas fa-user"></i>ユーザー</h4>
+    <form  action="" method="get">
+    </form>
     <h4>　<i class="fas fa-tags"></i>タグ</h4>
     <h4>　<i class="fas fa-calendar-alt"></i>期間</h4>
 
@@ -44,6 +48,14 @@
     <div class="container_header">
       <div class="container_name">
         <p>リスト一覧</p>
+
+      </div>
+      <div class="container_newObject">
+        <ul>
+          <li><a href="#">新規作成</a></li>
+          <li><button type="button" name="button">その他</button></li>
+        </ul>
+
       </div>
     </div>
     <div class="Sampling_ListFrame">
@@ -81,38 +93,17 @@
 
       {% endfor %}
       </table>
+
+
     </div>
+    {% include 'commons/pagination2.html' %}
+
 
   <!-- ユーザーステータス -->
-    <div class="User_Frame">
-      <!-- loginしているUser名の表示 -->
-      <!-- アカウント情報に関する編集(今は作成しない) -->
-      <div class="">
-
-      </div>
-    </div>
-  </div>
-  <div class="">
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
-    {% endif %}
-
-    <!-- 数字部分 -->
-    {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-            <span>{{ num }}</span>
-        {% else %}
-            <a href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-    {% endfor %}
-
-    <!-- 「次へ」 の部分 -->
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">次へ</a>
-    {% endif %}
   </div>
 
 </div>
+
 {% endblock content %}
 
     <!-- Optional JavaScript; choose one of the two! -->

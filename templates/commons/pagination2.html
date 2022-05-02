@@ -1,0 +1,32 @@
+<div class="pagination_frame" style="width: 600px;">
+{% if is_paginated %}
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+      <div class="pagination_list"><a class="" href="?{{ page_obj.previous_page_number.querystring }}">前</a></div>
+    {% else %}
+      <div class="pagination_list"><div class="" href="#">前</div></div>
+    {% endif %}
+    {% for link_page in page_obj.pages %}
+      {% if link_page %}
+        {% if link_page == page_obj.number %}
+          <div class="pagination_list"><div class="" href="#">{{ link_page }}</div></div>
+        {% else %}
+          <div class="pagination_list"><a class="" href="?{{ link_page.querystring  }}">{{ link_page }}</a></div>
+        {% endif %}
+      {% else %}
+        <div class="pagination_list"><a class="" href="#">・・・</a></div>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <div class="pagination_list"><a class="" href="?{{ page_obj.next_page_number.querystring }}">次</a></div>
+    {% else %}
+      <div class="pagination_list"><div class="" href="#">次</div></div>
+    {% endif %}
+
+  </div>
+  <div class="pagintaion_status">
+    {{ page_obj.paginator.num_pages }} 頁中 {{ page_obj.number }} 頁目を表示
+  </div>
+{% endif %}
+</div>
