@@ -25,7 +25,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
-
+from .forms import ImageUploadForm
 from pure_pagination.mixins import PaginationMixin
 ###############################################################################アカウント作成関連-------------------------------ここから-------------------------------------------------------
 ##管理者によるユーザー追加---------------------ここから---------------------------
@@ -52,9 +52,6 @@ def signup(request):
             test=Group.objects.get(name=permission)
             test.user_set.add(user)
             related_group=Original_GroupModel.objects.get(slave_user=request.user)
-            print("ぽいぽい")
-            print(related_group)
-            print("ほいほい")
             sample = Original_GroupModel(origin_group=related_group.origin_group, slave_user=user)
             sample.save()
             current_site = get_current_site(request)
@@ -159,12 +156,9 @@ class UserCreationList(ListView):
         ##後で修正
 
         if self.request.user.id is None:
-            print("ほいほい")
             logined_group=None
         else:
-            print("ちょいちょい")
             logined_group=self.request.user.groups
-            print(logined_group)
         groups_box=self.request.user.groups.all()
         Belong_GroupName= Original_GroupModel.objects.get(slave_user=self.request.user)
         object_list=Original_GroupModel.objects.filter(origin_group=Belong_GroupName.origin_group)
@@ -172,12 +166,10 @@ class UserCreationList(ListView):
         for i in object_list:
             slave_user_list.append(i.slave_user)
         object_list=slave_user_list
-        print(object_list)
         q_word = self.request.GET.get('query')
         if q_word:
             object_list = User.objects.filter(
                 Q(title__icontains=q_word))
-        print(object_list)
         return object_list
 ###ユーザーを管理者によって作成するためのリスト画面---ここまで-------------------
 
@@ -222,6 +214,13 @@ class SamplingList(PaginationMixin,ListView):
     template_name = 'Function/Sampling/SamplingList.html'
     model=SamplingModel
     paginate_by=10
+    #これはフィルタをかけているようで、実は毎回検索している
+    #であれば、プルダウンを選択できるようにしてそれで検索をかけさせられる。
+    #画面内に表示させることができないのでは？
+    #models.pyで検索用データベースを作ってしまえばよい？
+    #違う、Groupモデルで特定の条件を持ったユーザーのみを表示支える仕組みを作ればいい
+    #モデルを食わせることができないのでは？
+
     def get_queryset(self):
         permission=self.request.user.get_group_permissions()
         #もし閲覧権限があれば...
@@ -230,26 +229,20 @@ class SamplingList(PaginationMixin,ListView):
             login_group=Original_GroupModel.objects.filter(slave_user=login_user)
             #リスト0で動くか確認
             for i in login_group:
-                login_group_name=i.origin_group
-            Same_Group_Users=Original_GroupModel.objects.filter(origin_group=login_group_name)
+                self.login_group_name=i.origin_group
+            Same_Group_Users=Original_GroupModel.objects.filter(origin_group=self.login_group_name)
             Same_Group_UsersList=list()
             for i in Same_Group_Users:
                 Same_Group_UsersList.append(i.slave_user)
             object_list=list()
             q_word = self.request.GET.get('query')
 
+
             for i in Same_Group_UsersList:
                 Same_Groups_Users_Object = SamplingModel.objects.filter(user=i)
                 if q_word:
                     q_word_users_object=SamplingModel.objects.filter(title__icontains=q_word)
-                    for i in q_word_users_object:
-                        print(i)
-                        print("よいよい")
-                    for i in Same_Groups_Users_Object:
-                        print(i)
-                        print("そいそい")
                     if Same_Groups_Users_Object.first() is None:
-                        print("がーがー")
                         continue
                     else:
                         for k in q_word_users_object:
@@ -267,18 +260,23 @@ class SamplingList(PaginationMixin,ListView):
             return object_list
         else:
             return  redirect('exp1app:Top_Page')
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['User_list'] = Original_GroupModel.objects.filter(origin_group=self.login_group_name)
+        return context
 
 class SamplingList_Create(CreateView):
     template_name='Function/Sampling/SamplingList_Create.html'
     model=SamplingModel
-    fields=['animal','title','purpose','method','control_number','control_situation','experiment_number','experiment_situation']
+    fields=['animal','image','title','purpose','method','experiment_number01','experiment_situation01','experiment_number02','experiment_situation02','experiment_number03','experiment_situation03','experiment_number04','experiment_situation04','experiment_number05','experiment_situation05','experiment_number06','experiment_situation06','group_name01','group_name02','group_name03','group_name04','group_name05','group_name06']
     success_url=reverse_lazy('exp1app:Sampling_List')
     def get(self, request):
         #利用者の権限を確認する
+        form=ImageUploadForm
         permission=self.request.user.get_group_permissions()
         #もし閲覧権限があれば...
         if "exp1app.add_samplingmodel" in permission:
-            return render(request, 'Function/Sampling/SamplingList_Create.html')
+            return render(request, 'Function/Sampling/SamplingList_Create.html', {'form': form})
         return redirect('exp1app:Top_Page')
 
     def post(self, request, *args, **kwargs):
@@ -290,6 +288,7 @@ class SamplingList_Create(CreateView):
     def form_valid(self, form):
         qryset =  form.save(commit=False)
         qryset.user=self.request.user
+        qryset.image = self.request.FILES['image']
         qryset.save()
         return  redirect('exp1app:Sampling_List')
 
@@ -297,30 +296,50 @@ class SamplingList_Create(CreateView):
 #値が格納されていなければ、既に設定されているデータを変更しない
 #既存のデータを上に出したほうが見栄えがよさそう
 class SamplingList_Update(UpdateView):
+
     template_name = "Function/Sampling/SamplingList_Update.html"
-    fields =('title','animal','purpose','method','control_number','control_situation','experiment_number','experiment_situation')
+    fields =('animal','image','title','purpose','method','experiment_number01','experiment_situation01','experiment_number02','experiment_situation02','experiment_number03','experiment_situation03','experiment_number04','experiment_situation04','experiment_number05','experiment_situation05','experiment_number06','experiment_situation06','group_name01','group_name02','group_name03','group_name04','group_name05','group_name06')
     model=SamplingModel
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         permission=self.request.user.get_group_permissions()
         if "exp1app.change_samplingmodel" in permission:
-            print("カルボナーラ")
             return super().get(request, *args, **kwargs)
-        print("エンゲージ")
         return redirect('exp1app:Top_Page')
+    def form_valid(self, form):
+        qryset =  form.save(commit=False)
+        qryset.user=self.request.user
+        qryset.image = self.request.FILES['image']
+        qryset.save()
+        return  redirect('exp1app:Sampling_List')
     def get_success_url(self):
         return reverse('exp1app:SamplingList_Detail', kwargs={'pk': self.object.pk})
+
     def get_form(self):
         form = super(SamplingList_Update, self).get_form()
         form.fields['title'].label='サンプリング名'
-        form.fields['animal'].label='サンプリング対象'
-        form.fields['purpose'].label='サンプリング目的'
-        form.fields['method'].label='サンプリング方法'
-        form.fields['control_number'].label='コントロール数'
-        form.fields['control_situation'].label='コントロール条件'
-        form.fields['experiment_number'].label='実験群'
-        form.fields['experiment_situation'].label='実験条件'
-        print("アイコン")
+        form.fields['image'].label='サンプリング画像'
+        form.fields['animal'].label='対象生物'
+        form.fields['purpose'].label='目的'
+        form.fields['method'].label='方法'
+        form.fields['experiment_number01'].label='個体数01'
+        form.fields['experiment_situation01'].label='条件01'
+        form.fields['experiment_number02'].label='個体数02'
+        form.fields['experiment_situation02'].label='条件数02'
+        form.fields['experiment_number03'].label='個体数03'
+        form.fields['experiment_situation03'].label='条件数03'
+        form.fields['experiment_number04'].label='個体数04'
+        form.fields['experiment_situation04'].label='条件数04'
+        form.fields['experiment_number05'].label='個体数05'
+        form.fields['experiment_situation05'].label='条件数05'
+        form.fields['experiment_number06'].label='個体数06'
+        form.fields['experiment_situation06'].label='条件数06'
+        form.fields['group_name01'].label='グループ01'
+        form.fields['group_name02'].label='グループ02'
+        form.fields['group_name03'].label='グループ03'
+        form.fields['group_name04'].label='グループ04'
+        form.fields['group_name05'].label='グループ05'
+        form.fields['group_name06'].label='グループ06'
         return form
 
 class SamplingList_Delete(DeleteView):

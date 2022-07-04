@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     #下記はformのsixライブラリ用だが、消したほうが良いかも
     "corsheaders",
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

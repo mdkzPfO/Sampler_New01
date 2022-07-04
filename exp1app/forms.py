@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User,Group
-
-
+from .models import SamplingModel
 ##問題を整理する
 ##プルダウンでユーザーに対してどのような権限を与えるのか設定できるようにしたい。
 ##今発生している問題はユーザーに対して与える権限がコントロールできていないこと
@@ -25,3 +24,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2','permission')
+class ImageUploadForm(forms.ModelForm):
+    class Meta:
+        model = SamplingModel
+        fields = "__all__"

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% block header %}
 <header>
   <div class="header_title">
@@ -25,18 +26,107 @@
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container_check">
+<div class="Detail_Place">
+  <div class="Update_container_check">
+    <div class="Sampling_PageFrame">
+      <h1>レポートの更新</h1>
+    </div>
 
 <!-- Functionの各ツールに飛ぶリンクまとめ -->
   <!-- サンプリング方法を記録する箱 -->
-  <div class="Sampling_PageFrame">
-    <form method="post" novalidate>
+    <form method="post" novalidate="">
         {% csrf_token %}
+        <div class="SamplingUpdate_Frame">
+          <p>{{form.animal.label}}　&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ form.animal }}</p>
+        </div>
+        <div class="SamplingUpdate_Frame">
+          <p>{{form.title.label}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:{{ form.title }}</p>
+        </div>
+        <div class="SamplingUpdate_Frame">
+          <div class="Group_Situation">
+            <p>{{form.method.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : </p>{{ form.method|add_class:"UpdateForm_method"}}
+          </div>
+        </div>
+        <div class="SamplingUpdate_Frame">
+          <div class="Group_Situation">
+            <p>{{form.purpose.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :</p>{{ form.purpose|add_class:"UpdateForm_purpose"}}
 
-        {{ form.as_p }}
+          </div>
+        </div>
+        <div class="">
+          <p>{{form.image.label}}{{form.image}}</p>
+        </div>
+        <div class="for_numbers">
+          <div class="Group_SituationFrame_Box">
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name01.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name01|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number01.label}}:{{form.experiment_number01|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation01.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation01|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% if form.group_name02%}
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name02.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name02|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number02.label}}:{{form.experiment_number02|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation02.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation02|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% endif %}
+            {% if form.group_name03%}
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name03.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name03|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number03.label}}:{{form.experiment_number03|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation03.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation03|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% endif %}
+            {% if form.group_name04%}
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name04.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name04|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number04.label}}:{{form.experiment_number04|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation04.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation04|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% endif %}
+            {% if form.group_name05  %}
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name05.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name05|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number05.label}}:{{form.experiment_number05|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation05.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation05|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% endif %}
+            {% if form.group_name06%}
+            <div class="Group_SituationFrame">
+              <div class="Group_Title">
+                <p>{{form.group_name06.label}}&nbsp&nbsp&nbsp&nbsp:{{form.group_name06|add_class:"UpdateForm_GroupName"}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+                <p>{{form.experiment_number06.label}}:{{form.experiment_number06|add_class:"UpdateForm_Number"}}</p>
+              </div>
+              <div class="Group_Situation">
+                <p>{{form.experiment_situation06.label}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>{{form.experiment_situation06|add_class:"UpdateForm_Situation"}}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
         <input type="submit" value="保存">
     </form>
-  </div>
+</div>
 </div>
 {% endblock content %}
 

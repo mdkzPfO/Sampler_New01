@@ -71,10 +71,51 @@ text-decoration:underline;
 }
 
 .container_check{
-  float:right;
+  float:left;
   height:520px;
   padding:10px;
-  width:550px;
+  width:750px;
+  border:2px solid #336699;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: : auto;
+
+}
+.container_check_list{
+  float:left;
+  height:520px;
+  padding:10px;
+  width:450px;
+  border:2px solid #336699;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: : auto;
+}
+.Update_container_check{
+  float:left;
+  height:500px;
+  padding:10px;
+  width:600px;
+  border:2px solid #336699;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: : auto;
+}
+.create_container_check{
+  float:left;
+  height:500px;
+  padding:10px;
+  width:600px;
+  border:2px solid #336699;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: : auto;
+}
+.Detail_container_check{
+  float:left;
+  height:520px;
+  padding:10px;
+  width:750px;
   border:2px solid #336699;
   background-color: white;
 }
@@ -109,6 +150,12 @@ text-decoration:underline;
 .container_action_name a{
   text-decoration:underline;
   color:white;
+}
+#first_frame{
+  background-color: #336699;
+}
+.Table_Action{
+  display: none;
 }
 .container_accounts{
   background-color:pink;
@@ -155,9 +202,24 @@ text-decoration:underline;
   float:left;
   text-align: left;
 }
+.List_Place{
+  display: flex;
+  position:relative;right:180px;
+  z-index: 1;
+}
 .Object_Place{
   display: flex;
-  position:relative;right:150px;
+  position:relative;right:180px;
+  z-index: 1;
+}
+.Detail_Place{
+  display: flex;
+  position:relative;right:180px;
+  z-index: 1;
+}
+.Create_Place{
+  display: flex;
+  position:relative;right:180px;
   z-index: 1;
 }
 .login_form{
@@ -246,19 +308,85 @@ text-decoration:underline;
   width:200px;
   border:1px solid black;
   height:400px;
+  float: left;
+}
+.Title_Search{
+  padding-left: 20px;
+}
+.User_Search{
+  height:80px;
+  width:180px;
+  padding-left: 20px;
+  float: left;
+  flex-direction: column;
+  display: flex;
+}
+.User_Search_Title{
+  float: left;
+  height:35px;
+}
+.User_Search_Choice{
+  height:40px;
+  width:180px;
+  color:white;
+}
 
+.User_Search h4{
+  float: left;
+}
+.User_Search button{
+  width:150px;
+  height:20px;
+  float:left;
+}
+.User_Search_name{
+  width:150px;
+  text-align: center;
+  height:20px;
+}
+.User_Search_action_name{
+  display: none;
+  height:10px;
+  width:15px;
+  padding-left: 20px;
+  background-color: white;
+}
+.User_Search_action_box{
+  float:left;
+}
+.User_Search_action_name button{
+  float:left;
+  width:120px;
+  background-color: white;
+  overflow: hidden;
+}
+.User_Search_action_name a{
+  text-decoration:underline;
+  height:10px;
+  width:10px;
+  background-color: blue;
+}
+.container_action{
+  background-color: white;
+}
+.Tag_Search{
+  padding-left: 20px;
+  height:120px;
+}
+.Days_Search{
+  padding-left: 20px;
+  height:120px;
 }
 .Comment_Box{
   background-color:white;
-  width:200px;
+  width:400px;
   border:1px solid black;
-  height:400px;
+  height:500px;
 }
 .Template_Box{
-  background-color:white;
-  width:200px;
+  width:400px;
   border:1px solid black;
-  height:400px;
+  height:500px;
 
 }
 /* サンプリング作成のCSS*/
@@ -272,8 +400,35 @@ text-decoration:underline;
   margin:20px;
 }
 .Long_Input_Box{
-  width:500px;
-  line-height: 40px;
+  width:400px;
+  height:30px;
+}
+.Number_Input_Box{
+  width:30px;
+  height: 15px;
+}
+.Group_SituationFrame{
+  height:90px;
+  width:600px;
+  margin-bottom: 10px;
+}
+.Group_Situation{
+  height:70px;
+  width:600px;
+  vertical-align: top;
+  display: flex;
+
+}
+.Group_Title{
+  height:40px;
+  width:600px;
+  display: flex;
+}
+.situation_increase{
+  float:right;
+}
+.submittion_create{
+  float:right;
 }
 /* サンプリングリストのCSS*/
 .Sampling_ListBox{
@@ -290,6 +445,7 @@ text-decoration:underline;
   margin:0;
   padding:0;
 }
+
 .Sampling_ListBox a{
   background-color: #000080;
   color:white;
@@ -302,6 +458,10 @@ text-decoration:underline;
   z-index:10;
   position:relative;
   margin-top:30px;
+}
+.SamplingUpdate_PageFrame{
+  background-color: red;
+  width:5000px;
 }
 .Report_ListBox{
   border:solid 4px #FF3333;
@@ -374,4 +534,177 @@ text-decoration:underline;
   color:black;
   height:40px;
   width:200px;
+}
+
+.SCF_header{
+  width:200px;
+  border-bottom:1px solid black;
+}
+.image{
+  margin-top:10px;
+  margin-right:10px;
+  margin-left:10px;
+  text-align: center;
+  -webkit-box-sizing: border-box;  /*webkit系*/
+  -moz-box-sizing: border-box;  /*Firefox*/
+  box-sizing: border-box;
+}
+}
+img.sampling{
+}
+.Detail_Left{
+  float:left;
+  width:360px;
+  height:600px;
+}
+.Detail_Title{
+  margin-left:5px;
+  padding-left:10px;
+  border:2px solid #336699;
+  width:330px;
+  height:55px;
+  vertical-align: text-top;
+  background-color:#336699;
+  color:white;
+}
+.Detail_Contents{
+  margin-top:5px;
+  margin-left:5px;
+  padding-left: 10px;
+  border:0.5px solid black;
+  width:330px;
+  height:400px;
+  background-color: #D9E5FF	;
+}
+.Detail_Right{
+  float:left;
+  margin-top: 10px;
+  width:350px;
+  height:450px;
+
+}
+.Detail_Image_Box{
+  border:0.5px solid black;
+  width:380px;
+  margin-bottom: 20px;
+  margin-right:10px;
+  height:380px;
+  text-align: center;
+  background-color: #D9E5FF;
+
+}
+
+.Detail_Comment{
+  border:0.5px solid black;
+  width:380px;
+  height:100px;
+  margin-top:40px;
+  background-color: #D9E5FF;
+}
+.Exp_Table{
+  height:300px;
+}
+.Exp_Control{
+  width: 95%;
+  height:60px;
+  border:0.5px solid black;
+  margin-bottom: 2px;
+  background-color: white;
+}
+.Exp_Group{
+  width: 95%;
+  height:60px;
+  background-color: white;
+  border-bottom:0.5px solid black;
+  border:0.5px solid black;
+  line-height: 0.5px;
+  margin-bottom: 3px;
+}
+.Exp_Situation{
+  width:100%;
+  line-height: 0.5px;
+  border-top: 1px solid black;
+  height:40px;
+}
+.Exp_Header{
+  display: flex;
+  height:25px;
+  width:99.5%;
+  line-height: 0.3px;
+  vertical-align: middle;
+}
+.Exp_Title{
+  float:left;
+  width:45%;
+  height:25px;
+  padding-left:3px;
+  border-right:1px solid black;
+  background-color: #336699;
+  color:white;
+}
+.Exp_Numbers{
+  float:left;
+  margin-left:5px;
+  vertical-align: top;
+  width:45%
+}
+.Detail_Objection_Frame{
+  display: flex;
+  width:300px;
+  height:25px;
+  line-height: 0.5px;
+  margin-top:10px;
+  background-color: white;
+
+}
+.Detail_Objection{
+  background-color:#336699;
+  color:white;
+  float: left;
+  width:50px;
+  text-align: center;
+
+}
+.Detail_Objection_Title{
+  border:1px solid black;
+  width:350px;
+  padding-left: 5px;
+}
+.Detail_Method_Frame{
+  display: flex;
+  width:300px;
+  height:25px;
+  line-height: 0.5px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+.Detail_Method{
+  background-color:#336699;
+  color:white;
+  float: left;
+  width:50px;
+  text-align: center;
+}
+
+.Detail_Method_Title{
+  border:1px solid black;
+  width:350px;
+  padding-left: 5px;
+}
+.UpdateForm_Situation{
+  width:400px;
+  height:30px;
+}
+.UpdateForm_Number{
+  width:30px;
+  height: 15px;
+}
+.UpdateForm_purpose{
+  width:400px;
+  height:30px;
+}
+.UpdateForm_method{
+  width:400px;
+  height:30px;
 }

@@ -17,7 +17,7 @@
       {% endif %}
     </div>
     <div class="logout">
-      <a href="#">ログアウト</a>
+      <a href="{% url 'accounts:logout' %}">ログアウト</a>
     </div>
 
   </div>
@@ -26,86 +26,158 @@
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="Object_Place">
-  <div class="Comment_Box">
+<div class="Detail_Place">
+  <div class="Detail_container_check">
+    <div class="Detail_Left">
+      {% if perms.my_app.permission_code %}
 
-  </div>
-  <div class="container_check">
-
-  <!-- サンプリングデータを閲覧する -->
-    <div class="Sampling_CheckFrame">
-      <div class="SCF_header">
-          {{ perms.my_app.permission_code }}
-          {% if perms.my_app.permission_code %}
-        <!-- 日付 -->
-        <div class="">
-          <p>{{ object.created_at|date:"y/n/j H:i:s T" }}</p>
-
-        </div>
-        <h1>{{ object.title }}</h1>
-        <!--  対象生物　-->
-        <h3>{{ object.animal }}</h3>
-        <h3>{{ object.user }}</h3>
-        {% endif %}
+      <h5>作成者：{{ object.user }} 対象生物:{{ object.animal }}</h5>
+      <div class="Detail_Title">
+        <h2>{{ object.title }}</h2>
       </div>
-      <!-- 詳細 -->
-      <div class="SCF_container">
+      <div class="Detail_Contents">
+        <!-- 日付 -->
         <div class="SCF_Summary">
           <!-- サンプリング目的 -->
-          <div class="">
-            <p>{{ object.purpose }}</p>
+          <div class="Detail_Objection_Frame">
+            <div class="Detail_Objection">
+              <p>目的</p>
+            </div>
+            <div class="Detail_Objection_Title">
+              <p>{{ object.purpose }}</p>
+            </div>
           </div>
           <!-- サンプリング手法 -->
-          <div class="">
-            <p>{{ object.method}}</p>
-          </div>
-        </div>
-        <div class="SCF_Group">
-          <!-- コントロールグループ -->
-          <div class="SCFG_Control">
-            <!-- N数 -->
-            <div class="">
-              <p>Control :{{ object.control_number }}</p>
+          <div class="Detail_Method_Frame">
+            <div class="Detail_Method">
+              <p>手法</p>
             </div>
-            <!-- コントロール条件 -->
-            <div class="SCFG_Situation">
-              <p>実験条件:{{ object.control_situation }}</p>
-            </div>
-          </div>
-          <!-- 実験グループ(複数グループも考慮すべき？？) -->
-          <div class="">
-            <div class="SCFG_Experiment">
-              <!-- N数 -->
-              <div class="">
-                <p>Experiment :{{ object.experiment_number }}</p>
-              </div>
-              <!-- 実験群の条件 -->
-              <div class="SCFG_Situation">
-                <p>実験条件：{{ object.experiment_situation }}</p>
-              </div>
+            <div class="Detail_Method_Title">
+              <p>{{ object.method}}</p>
             </div>
           </div>
         </div>
 
-        <!-- 保存方法(今は作成しない) -->
-        <!-- 補足(今は作成しない) -->
-        <!--担当者(今は作成しない) -->
+        {% endif %}
+
+      <div class="Exp_Table">
+        <!-- コントロールグループ -->
+        <div class="Exp_Control">
+          <!-- N数 -->
+          <div class="Exp_Header">
+            <div class="Exp_Title">
+              <p>{{ object.group_name01}}</p>
+            </div>
+            <div class="Exp_Numbers">
+              <p>個体数:{{object.experiment_number01}}</p>
+            </div>
+          </div>
+          <div class="Exp_Situation">
+            <p>条件:</p>
+            <p style="font:10px">{{ object.experiment_situation01 }}</p>
+          </div>
+        </div>
+        {% if object.group_name02 != "None" %}
+        <div class="Exp_Group">
+          <!-- N数 -->
+          <div class="Exp_Header">
+            <div class="Exp_Title">
+              <p>{{ object.group_name02}}</p>
+            </div>
+            <div class="Exp_Numbers">
+              <p>個体数:{{object.experiment_number02}}</p>
+            </div>
+          </div>
+          <div class="Exp_Situation">
+            <p>条件:</p>
+            <p style="font:10px">{{ object.experiment_situation02 }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if object.group_name03 != "None" %}
+        <div class="Exp_Group">
+          <!-- N数 -->
+          <div class="Exp_Header">
+            <div class="Exp_Title">
+              <p>{{ object.group_name03}}</p>
+            </div>
+            <div class="Exp_Numbers">
+              <p>個体数:{{object.experiment_number03}}</p>
+            </div>
+          </div>
+          <div class="Exp_Situation">
+            <p>条件:</p>
+            <p style="font:10px">{{ object.experiment_situation03 }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if object.group_name04 != "None" %}
+        <div class="Exp_Group">
+          <!-- N数 -->
+          <div class="Exp_Header">
+            <div class="Exp_Title">
+              <p>{{ object.group_name04}}</p>
+            </div>
+            <div class="Exp_Numbers">
+              <p>個体数:{{object.experiment_number04}}</p>
+            </div>
+          </div>
+          <div class="Exp_Situation">
+            <p>条件:</p>
+            <p style="font:10px">{{ object.experiment_situation04 }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if object.group_name05 != "None" %}
+        <div class="Exp_Group">
+          <!-- N数 -->
+          <div class="Exp_Header">
+            <div class="Exp_Title">
+              <p>{{ object.group_name05}}</p>
+            </div>
+            <div class="Exp_Numbers">
+              <p>個体数:{{object.experiment_number05}}</p>
+            </div>
+          </div>
+          <div class="Exp_Situation">
+            <p>条件:</p>
+            <p style="font:10px">{{ object.experiment_situation05 }}</p>
+          </div>
+        </div>
+        {% endif %}
+
+
+      <!-- 実験グループ(複数グループも考慮すべき？？) -->
+
       </div>
-
     </div>
-  <!-- ユーザーステータス -->
-    <div class="User_Frame">
-      <!-- loginしているUser名の表示 -->
-      <!-- アカウント情報に関する編集(今は作成しない) -->
-      <div class="">
+   </div>
+   <div class="Detail_Right">
+     <div class="Detail_Image_Box">
+       {% if object.image %}
+       <div class ="image">
+           <img class="sampling" src="{{ object.image.url }}" style="width:350px;height:350px">
+       </div>
+       {% else %}
+       <div class ="image">
+         <h2>画像がありません</h2>
+       </div>
+     </div>
 
-      </div>
+     {% endif %}
+     <div class="Detail_Comment">
 
-    </div>
+     </div>
+
+   </div>
+    <!-- 詳細 -->
+
 
 
   </div>
+
 </div>
+
 
 {% endblock content %}
 

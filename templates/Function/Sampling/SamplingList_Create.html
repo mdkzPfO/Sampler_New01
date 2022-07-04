@@ -25,53 +25,107 @@
   <body>
 {% block content %}
 <!-- 中身 -->
-<div class="container_check">
-<!-- Functionの各ツールに飛ぶリンクまとめ -->
-  <!-- サンプリング方法を記録する箱 -->
-  <div class="Sampling_PageFrame">
-    <!-- 以下の情報を取得する
-date
-title
-animal
-purpose
-method
-contorl number
-situation
-experiment number
-experiment situation -->
-<!-- 日付とタイトル -->
-  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <p>対象生物&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="animal" required=True></p>
+<div class="Create_Place">
+  <div class="create_container_check">
+  <!-- Functionの各ツールに飛ぶリンクまとめ -->
+    <!-- サンプリング方法を記録する箱 -->
+    <div class="Sampling_PageFrame">
+      <h1>レポートの作成</h1>
+      <!-- 以下の情報を取得する
+  date
+  title
+  animal
+  purpose
+  method
+  contorl number
+  situation
+  experiment number
+  experiment situation -->
+  <!-- 日付とタイトル -->
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+      <div class="SamplingCreate_Frame">
+          <p>対象生物&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="animal" required=True></p>
 
-        <p>サンプリング名&nbsp&nbsp&nbsp:<input type="text" name="title" required=True></p>
-        <p>サンプリング目的:</p><textarea type="text" name="purpose" required=True class="Long_Input_Box"></textarea>
+      </div>
+      <div class="SamplingCreate_Frame">
+          <p>サンプリング名:<input type="text" name="title" required=True></p>
+      </div>
+      <div class="SamplingCreate_Frame">
+        <div class="Group_Situation">
+          <p>方法 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><textarea type="text" name="method" required=True class="Long_Input_Box"></textarea>
+        </div>
+      </div>
+      <div class="SamplingCreate_Frame">
+        <div class="Group_Situation">
+          <p>目的 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><textarea type="text" name="purpose" required=True class="Long_Input_Box"></textarea>
+        </div>
+      </div>
+      <div class="">
+        <p><label for="id_image">サンプリング画像:</label> <input type="file" name="image" accept="image/*" required=False id="id_image" value=None></p>
+      </div>
+      <div class="for_numbers">
+        <div class="Group_SituationFrame_Box">
+          <div class="Group_SituationFrame">
+            <div class="Group_Title">
+              <p>グループ名 &nbsp&nbsp&nbsp&nbsp&nbsp:<input type="text" name="group_name01" required=True></p>
+              <p>&nbsp&nbsp&nbsp&nbsp&nbspN数:<input class="Number_Input_Box" type="text" name="experiment_number01" required=True></p>
+            </div>
+            <div class="Group_Situation">
+              <p>実験条件&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><textarea type="text" name="experiment_situation01" required=True class="Long_Input_Box"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+        <input class="hidden_number" type="hidden" name="experiment_number02" value=None>
+        <input class="hidden_number" type="hidden" name="experiment_number03" value=None>
+        <input class="hidden_number" type="hidden" name="experiment_number04" value=None>
+        <input class="hidden_number" type="hidden" name="experiment_number05" value=None>
+        <input class="hidden_number" type="hidden" name="experiment_number06" value=None>
+        <input class="hidden_situation" type="hidden" name="experiment_situation02" value=None>
+        <input class="hidden_situation" type="hidden" name="experiment_situation03" value=None>
+        <input class="hidden_situation" type="hidden" name="experiment_situation04" value=None>
+        <input class="hidden_situation" type="hidden" name="experiment_situation05" value=None>
+        <input class="hidden_situation" type="hidden" name="experiment_situation06" value=None>
+
+        <input class="hidden_group" type="hidden" name="group_name02" value=None>
+        <input class="hidden_group" type="hidden" name="group_name03" value=None>
+        <input class="hidden_group" type="hidden" name="group_name04" value=None>
+        <input class="hidden_group" type="hidden" name="group_name05" value=None>
+        <input class="hidden_group" type="hidden" name="group_name06" value=None>
 
 
 
-        <p>サンプリング方法:</p><textarea type="text" name="method" required=True class="Long_Input_Box"></textarea>
-
-        <p>コントロール：サンプル数:</p><input type="text" name="control_number" required=True>
-
-        <p>コントロール：実験条件&nbsp&nbsp&nbsp:</p><textarea type="text" name="control_situation" required=True class="Long_Input_Box"></textarea>
-
-        <p>実験群：サンプル数&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><input type="text" name="experiment_number" required=True>
-        <p>実験群：実験条件&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p><textarea type="text" name="experiment_situation" required=True class="Long_Input_Box"></textarea>
-        <input type="hidden" name="user" value="{{ user }}">
+      <input type="hidden" name="user" value="{{ user }}">
+      <div class="situation_increase">
+        <button type="button" name="button" id="Experiment_Add">実験群の追加</button>
+      </div>
+      <div class="submittion_create">
         <input type="submit" name="" value="作成する">
-  </form>
+      </div>
 
-<!-- ユーザーステータス -->
-  <div class="User_Frame">
-    <!-- loginしているUser名の表示 -->
-    <!-- アカウント情報に関する編集(今は作成しない) -->
-    <div class="">
+    </form>
+
+  <!-- ユーザーステータス -->
+    <div class="User_Frame">
+      <!-- loginしているUser名の表示 -->
+      <!-- アカウント情報に関する編集(今は作成しない) -->
+      <div class="">
+
+      </div>
 
     </div>
 
+
   </div>
 
+</div>
+<div class="Template_Box">
+  <p>テンプレート一覧</p>
 
 </div>
+
 {% endblock content %}
 
     <!-- Optional JavaScript; choose one of the two! -->

@@ -2,56 +2,43 @@
 {% block header %}
 <header>
   <div class="header_title">
-    <h2>Sampler</h2>
+    <h1>実験生物管理-Sampler</h1>
   </div>
   <div class="header_login">
     <div class="">
-      <a href="{% url 'exp1app:Top_Page' %}"><i class="fas fa-home"></i>TOPへ</a>
+      <a href="{% url 'exp1app:Top_Page' %}">TOPへ</a>
     </div>
     <div class="login_user">
       {% if user.is_anonymous %}
-      <a><i class="fas fa-user"></i>ゲスト</a>
+      <a>ユーザー:ゲスト</a>
       {% else %}
-      <a><i class="fas fa-user"></i>{{ user }}</a>
+      <a>ユーザー；{{ user }}</a>
       {% endif %}
     </div>
     <div class="logout">
-      <a href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i>ログアウト</a>
+      <a href="{% url 'accounts:logout' %}">ログアウト</a>
     </div>
-
 
   </div>
 </header>
-
-<body>
-
 {% endblock header %}
+  <body>
 {% block content %}
 <!-- 中身 -->
-<div class="Object_Place">
-  <div class="container_check">
+<div class="Detail_Place">
+  <div class="Detail_container_check">
 
-  <!-- ダッシュボード画面 -->
-    <div class="Contents_Box_Frame">
-      <!-- 昨日の飼育日誌へのリンクとざっくり情報(今は作成しない)-->
-      <!-- 今日の飼育担当者リスト(今は作成しない) -->
-      <!--飼育通知（今は作成しない）-->
-      <!-- カレンダー -->
+<!-- Functionの各ツールに飛ぶリンクまとめ -->
+  <!-- サンプリング方法を記録する箱 -->
+  <div class="Sampling_PageFrame">
+    <form method="post" novalidate>
+        {% csrf_token %}
 
-    </div>
-  <!-- ユーザーステータス -->
-    <div class="User_Frame">
-      <!-- loginしているUser名の表示 -->
-      <!-- アカウント情報に関する編集(今は作成しない) -->
-      <div class="">
-
-      </div>
-
-    </div>
-
-
+        {{ form.as_p }}
+        <input type="submit" value="保存">
+    </form>
   </div>
-
+</div>
 </div>
 {% endblock content %}
 

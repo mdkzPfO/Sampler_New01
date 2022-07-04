@@ -26,25 +26,49 @@
 django-pure-pagination
 {% block content %}
 <!-- 中身 -->
-<div class="Object_Place">
+<div class="List_Place">
   <div class="Search_Box">
-
-
-
     <h4>　<i class="fas fa-search"></i>絞り込み</h4>
-    <h4><i class="fab fa-searchengin"></i>タイトルで検索</h4>
-    <form action="" method="get" >
-      <input name="query" value="{{ request.GET.query }}" type="text">
-      <button type="submit">検索する</button>
-    </form>
-    <h4>　<i class="fas fa-user"></i>ユーザー</h4>
+    <div class="Title_Search">
+      <h4>  <i class="fab fa-searchengin"></i>タイトルで検索</h4>
+      <form action="" method="get" >
+        <input name="query" value="{{ request.GET.query }}" type="text">
+        <button type="submit">検索する</button>
+      </form>
+    </div>
+    <div class="User_Search">
+      <div class="User_Search_Title">
+        <h4><i class="fas fa-user"></i>ユーザー</h4>
+      </div>
+      <div class="User_Search_name">
+        <a>絞り込みユーザー</a>
+        <div class="User_Search_action_box">
+          <form class="container_action" action="index.html" method="post">
+            <div class="">
+              {% for item in User_list %}
+              <div class="User_Search_action_name">
+                <button type="button" name="button">{{ item.slave_user}}</button>
+              </div>
+              {% endfor %}
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+
     <form  action="" method="get">
     </form>
-    <h4>　<i class="fas fa-tags"></i>タグ</h4>
-    <h4>　<i class="fas fa-calendar-alt"></i>期間</h4>
-
+    <div class="Tag_Search">
+      <h4>　<i class="fas fa-tags"></i>タグ</h4>
+    </div>
+    <div class="Days_Search">
+      <h4><i class="fas fa-calendar-alt"></i>期間</h4>
+    </div>
   </div>
-  <div class="container_check">
+  <div class="container_check_list">
     <div class="container_header">
       <div class="container_name">
         <p>リスト一覧</p>
@@ -60,7 +84,7 @@ django-pure-pagination
     </div>
     <div class="Sampling_ListFrame">
       <table border="1">
-        <tr>
+        <tr id="first_frame">
           <td></td>
           <th>ユーザー名</th>
           <th>タイトル</th>
@@ -75,25 +99,28 @@ django-pure-pagination
          <th><a href="{% url 'exp1app:SamplingList_Detail' item.pk %}">{{ item.title }}</a></th>
          <th>{{ item.datetime.date }}</th>
          <th>{{ item.datetime.time}}</th>
-         <th><div class="container_action" id="test">
-             <a id="test"><i class="fas fa-edit"></i></a>
-             <div class="container_action_name" id="test">
-               <a  href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
-             </div>
-             <div class="container_action_name" id="test">
-               <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
+         <th>
+           <div class="Table_Action_List">
+             <a><i class="fas fa-edit"></i></a>
+             <div class="Table_Action" id="Action_ID">
+               <div class="Table_Action_Name" id="test">
+                 <a  href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
+               </div>
+               <div class="Table_Action_Name" id="test">
+                 <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
+               </div>
+               <div class="Table_Action_Name" id="test">
+                 <a href="#">出力</a>
+               </div>
+            </div>
 
-             </div>
-             <div class="container_action_name" id="test">
-               <a href="#">出力</a>
+           </div>
 
-             </div>
-           </div></th>
+         </th>
         </tr>
 
       {% endfor %}
       </table>
-
 
     </div>
     {% include 'commons/pagination2.html' %}

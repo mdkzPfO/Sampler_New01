@@ -6,17 +6,38 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 EVALUATION_CHOICES=[('良い','良い'),('悪い','悪い')]
 #サンプリングのデータベース
+class Original_GroupModel(models.Model):
+    origin_group=models.CharField(max_length=100,null=True)
+    slave_user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 class SamplingModel(models.Model):
     title=models.CharField(max_length=100,null=True,default=None)
     animal=models.CharField(max_length=100,null=True,default=None)
     purpose=models.CharField(max_length=100,null=True,default=None)
-    control_number=models.CharField(max_length=100,null=True,default=None)
     method=models.CharField(max_length=100,null=True,default=None)
-    control_situation=models.CharField(max_length=100,null=True,default=None)
-    experiment_number=models.CharField(max_length=100,null=True,default=None)
-    experiment_situation=models.CharField(max_length=100,null=True,default=None)
+    group_name01=models.CharField(max_length=100,null=True,default=None)
+    experiment_number01=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation01=models.CharField(max_length=100,null=True,default=None)
+    group_name02=models.CharField(max_length=100,null=True,default=None)
+    experiment_number02=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation02=models.CharField(max_length=100,null=True,default=None)
+    group_name03=models.CharField(max_length=100,null=True,default=None)
+    experiment_number03=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation03=models.CharField(max_length=100,null=True,default=None)
+    group_name04=models.CharField(max_length=100,null=True,default=None)
+    experiment_number04=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation04=models.CharField(max_length=100,null=True,default=None)
+    group_name05=models.CharField(max_length=100,null=True,default=None)
+    experiment_number05=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation05=models.CharField(max_length=100,null=True,default=None)
+    group_name06=models.CharField(max_length=100,null=True,default=None)
+    experiment_number06=models.CharField(max_length=100,null=True,default=None)
+    experiment_situation06=models.CharField(max_length=100,null=True,default=None)
+    image = models.ImageField(upload_to='img/',default=None,null=True)
     datetime = models.DateTimeField(default=timezone.now)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
+    origin_groups=models.ManyToManyField(Original_GroupModel)
+    def __str__(self):
+        return self.title
 #毎日のレポートのデータベース
 class ReportModel(models.Model):
     status=models.TextField(null=True)
@@ -34,6 +55,3 @@ class AnimalModel(models.Model):
     temprature=models.TextField(null=True)
     location=models.TextField(null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,default=None)
-class Original_GroupModel(models.Model):
-    origin_group=models.CharField(max_length=100,null=True)
-    slave_user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
