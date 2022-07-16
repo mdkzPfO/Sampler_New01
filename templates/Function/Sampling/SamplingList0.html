@@ -104,9 +104,7 @@ django-pure-pagination
              <a><i class="fas fa-edit"></i></a>
              <div class="Table_Action" id="Action_ID">
                <div class="Table_Action_Name" id="test">
-                 <form method="post" action="{% url 'exp1app:SamplingList_Delete' item.pk %}">{% csrf_token %}
-                   <a class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</a>
-                 </form>
+                 <a  href="{% url 'exp1app:SamplingList_Delete' item.pk %}">削除</a>
                </div>
                <div class="Table_Action_Name" id="test">
                  <a href="{% url 'exp1app:SamplingList_Update' item.pk %}">更新</a>
@@ -115,7 +113,6 @@ django-pure-pagination
                  <a href="#">出力</a>
                </div>
             </div>
-
 
            </div>
 

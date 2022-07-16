@@ -67,10 +67,10 @@ $(function() {
   );
   $(".Table_Action_List").hover(
     function(){
-      $(this).find("#Action_ID").fadeIn(1);
+      $(this).find("#Action_ID").show();
     },
     function(){
-      $(this).find("#Action_ID").fadeOut(1);
+      $(this).find("#Action_ID").hide();
 
     }
   );
@@ -97,4 +97,13 @@ $(function() {
       $('.hidden_situation:first').remove();
     }
   });
+  $(".SamplingDetail_Action").hover(
+    function(){
+      $(".SamplingDetail_ActionList_Under").show();
+    },
+    function(){
+      $(".SamplingDetail_ActionList_Under").hide();
+    }
+
+);
 });

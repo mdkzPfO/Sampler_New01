@@ -34,7 +34,7 @@
 
 <!-- Functionの各ツールに飛ぶリンクまとめ -->
   <!-- サンプリング方法を記録する箱 -->
-    <form method="post" novalidate="">
+    <form method="post" novalidate="" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="SamplingUpdate_Frame">
           <p>{{form.animal.label}}　&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ form.animal }}</p>
@@ -53,8 +53,11 @@
 
           </div>
         </div>
-        <div class="">
-          <p>{{form.image.label}}{{form.image}}</p>
+        <div class="SamplingUpdate_Frame_Image">
+          <p>サンプリング画像</p>
+          <div class="SamplingUpdate_Image">
+            <p>{{form.image}}</p>
+          </div>
         </div>
         <div class="for_numbers">
           <div class="Group_SituationFrame_Box">

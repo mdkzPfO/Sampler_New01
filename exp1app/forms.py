@@ -27,4 +27,5 @@ class SignUpForm(UserCreationForm):
 class ImageUploadForm(forms.ModelForm):
     class Meta:
         model = SamplingModel
+        label="サンプリング画像"
         fields = "__all__"

@@ -463,6 +463,37 @@ text-decoration:underline;
   background-color: red;
   width:5000px;
 }
+.SamplingUpdate_Frame_Image{
+  display: flex;
+}
+.SamplingUpdate_Image{
+  margin-left: 30px;
+  width:420px;
+  border:0.3px black solid;
+}
+.Detail_Left_SamplingHeader{
+  padding-left:10px;
+  padding-right:10px;
+  height:40px;
+}
+.SamplingDetail_Header_TItle{
+  float: left;
+}
+.SamplingDetail_Action{
+  float: right;
+  margin-right:10px;
+  margin-top:16px;
+  background-color: white;
+}
+.SamplingDetail_ActionList{
+  width:50px;
+  text-align: center;
+  text-decoration: underline white;
+}
+.SamplingDetail_ActionList_Under{
+  display: None;
+  background-color: #f5f5f5;
+}
 .Report_ListBox{
   border:solid 4px #FF3333;
   border-style:solid ridge;
@@ -549,11 +580,10 @@ text-decoration:underline;
   -moz-box-sizing: border-box;  /*Firefox*/
   box-sizing: border-box;
 }
-}
 img.sampling{
 }
 .Detail_Left{
-  float:left;
+  float: left;
   width:360px;
   height:600px;
 }
@@ -575,6 +605,8 @@ img.sampling{
   width:330px;
   height:400px;
   background-color: #D9E5FF	;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .Detail_Right{
   float:left;
@@ -651,10 +683,11 @@ img.sampling{
 .Detail_Objection_Frame{
   display: flex;
   width:300px;
-  height:25px;
-  line-height: 0.5px;
+  height: 50px;
+  line-height: 15px;
   margin-top:10px;
   background-color: white;
+  vertical-align: top;
 
 }
 .Detail_Objection{
@@ -662,36 +695,49 @@ img.sampling{
   color:white;
   float: left;
   width:50px;
-  text-align: center;
+  vertical-align: top;
 
 }
 .Detail_Objection_Title{
   border:1px solid black;
   width:350px;
   padding-left: 5px;
+  vertical-align: top;
+  word-wrap: break-word;
+  text-align: justify;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .Detail_Method_Frame{
   display: flex;
   width:300px;
-  height:25px;
-  line-height: 0.5px;
+  height: 50px;
+  line-height: 15px;
   margin-top:10px;
   margin-bottom: 10px;
   background-color: white;
+  vertical-align: top;
+
 }
 .Detail_Method{
   background-color:#336699;
   color:white;
   float: left;
   width:50px;
-  text-align: center;
+  vertical-align: top;
 }
 
 .Detail_Method_Title{
   border:1px solid black;
   width:350px;
   padding-left: 5px;
+  vertical-align: top;
+  word-wrap: break-word;
+  text-align: justify;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
 .UpdateForm_Situation{
   width:400px;
   height:30px;

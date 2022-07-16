@@ -39,7 +39,7 @@
 
         <div class="SamplingDetail_Action">
           <div class="SamplingDetail_ActionList">
-            <h10>Action</h10>
+            <h5>Action</h5>
             <div class="SamplingDetail_ActionList_Under">
                 <form method="post" action="{% url 'exp1app:SamplingList_Delete' object.pk %}">{% csrf_token %}
                   <a class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</a>
@@ -63,14 +63,18 @@
             <div class="Detail_Objection">
               <p>目的</p>
             </div>
-            <div class="Detail_Objection_Title">{{ object.purpose }}</div>
+            <div class="Detail_Objection_Title">
+              <p>{{ object.purpose }}</p>
+            </div>
           </div>
           <!-- サンプリング手法 -->
           <div class="Detail_Method_Frame">
             <div class="Detail_Method">
               <p>手法</p>
             </div>
-            <div class="Detail_Method_Title">{{ object.method }}</div>
+            <div class="Detail_Method_Title">
+              <p>{{ object.method}}</p>
+            </div>
           </div>
         </div>
 
@@ -182,7 +186,6 @@
 
      {% endif %}
      <div class="Detail_Comment">
-       <h5>サンプリングチェーン</h5>
 
      </div>
 
